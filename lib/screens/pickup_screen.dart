@@ -5,6 +5,15 @@ class PickUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Column(
+        children: [
+          Text(
+            'Choose a side',
+          ),
+          
+        ],
+      ),
+    );
   }
 }
