@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ContainerWidget extends StatelessWidget {
-
-  final color,text,textColor;
-
-  ContainerWidget({this.color,this.text,this.textColor});
+  final color, text, textColor;
+  ContainerWidget({this.color, this.text, this.textColor});
 
   @override
   Widget build(BuildContext context) {

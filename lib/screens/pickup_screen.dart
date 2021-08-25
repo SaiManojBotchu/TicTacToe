@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/widgets/container_widget.dart';
+import 'package:tic_tac_toe/constants.dart';
 
 class PickUpScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFF4C4B),
+      backgroundColor: kBackgroundColor,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -17,7 +17,7 @@ class PickUpScreen extends StatelessWidget {
                 child: Text(
                   'Choose a side',
                   style: TextStyle(
-                    color: Color(0XFFFFCA28),
+                    color: kTextColor,
                     fontSize: 30.0,
                     fontWeight: FontWeight.w500,
                     fontFamily: 'Carter',
@@ -25,13 +25,19 @@ class PickUpScreen extends StatelessWidget {
                 ),
               ),
             ),
-            ContainerWidget(color: Color(0XFFFFCA28),text: "X",textColor: Color(0XFFFF4C4B),),
-            ContainerWidget(color: Color(0xFFFF4C4B),text: "O", textColor: Color(0XFFFFCA28),),
+            ContainerWidget(
+              color: kBackgroundColor,
+              text: "X",
+              textColor: kTextColor,
+            ),
+            ContainerWidget(
+              color: kTextColor,
+              text: "O",
+              textColor: kBackgroundColor,
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
