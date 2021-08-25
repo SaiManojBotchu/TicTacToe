@@ -26,7 +26,7 @@ class PickUpScreen extends StatelessWidget {
               ),
             ),
             ContainerWidget(color: Color(0XFFFFCA28),text: "X",textColor: Color(0XFFFF4C4B),),
-            ContainerWidget(color: Color(0xFFFF4C4B),text: "O", textColor: Color(0XFFFFCA28),)
+            ContainerWidget(color: Color(0xFFFF4C4B),text: "O", textColor: Color(0XFFFFCA28),),
           ],
         ),
       ),
