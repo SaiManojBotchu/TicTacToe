@@ -4,9 +4,9 @@ import 'package:tic_tac_toe/constants.dart';
 class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color(0xFF36268C),
-      child: SafeArea(
+    return Scaffold(
+      backgroundColor: Color(0xFF36268C),
+      body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
