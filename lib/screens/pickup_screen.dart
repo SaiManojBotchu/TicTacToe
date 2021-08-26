@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/screens/game_screen.dart';
 import 'package:tic_tac_toe/widgets/container_widget.dart';
 import 'package:tic_tac_toe/constants.dart';
+import 'package:tic_tac_toe/widgets/start_button.dart';
 
 enum Option { X, O }
 
@@ -54,6 +56,17 @@ class _PickUpScreenState extends State<PickUpScreen> {
               text: "O",
               textColor: pressed == Option.O ? kBackgroundColor : kTextColor,
             ),
+            StartButton(
+              text: 'Start',
+              textSize: 30.0,
+              textPadding: 5.0,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => GameScreen()),
+                );
+              },
+            )
           ],
         ),
       ),

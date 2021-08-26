@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 import 'package:tic_tac_toe/screens/pickup_screen.dart';
+import 'package:tic_tac_toe/widgets/start_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -35,22 +36,16 @@ class WelcomeScreen extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 40.0, horizontal: 30.0),
-                child: MaterialButton(
-                  padding: EdgeInsets.all(20.0),
-                  textColor: kBackgroundColor,
-                  color: kTextColor,
-                  minWidth: double.infinity,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  child: Text(
-                    'Start',
-                    style: TextStyle(fontFamily: 'Paytone', fontSize: 35.0),
-                  ),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PickUpScreen()));
-                  },
-                ),
+              child: StartButton(
+                text: 'Pick a side',
+                textSize: 35.0,
+                textPadding: 20.0,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PickUpScreen()),
+                  );
+                },
               ),
             ),
           )
