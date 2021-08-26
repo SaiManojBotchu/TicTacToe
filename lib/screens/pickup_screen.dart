@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/widgets/container_widget.dart';
 import 'package:tic_tac_toe/constants.dart';
 
-class PickUpScreen extends StatelessWidget {
+enum Option { X, O }
+
+class PickUpScreen extends StatefulWidget {
+  @override
+  _PickUpScreenState createState() => _PickUpScreenState();
+}
+
+class _PickUpScreenState extends State<PickUpScreen> {
+  Option? pressed;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +35,24 @@ class PickUpScreen extends StatelessWidget {
               ),
             ),
             ContainerWidget(
-              color: kBackgroundColor,
+              onTapFunction: () {
+                setState(() {
+                  pressed = Option.X;
+                });
+              },
+              containerColor: pressed == Option.X ? kTextColor : kBackgroundColor,
               text: "X",
-              textColor: kTextColor,
+              textColor: pressed == Option.X ? kBackgroundColor : kTextColor,
             ),
             ContainerWidget(
-              color: kTextColor,
+              onTapFunction: () {
+                setState(() {
+                  pressed = Option.O;
+                });
+              },
+              containerColor: pressed == Option.O ? kTextColor : kBackgroundColor,
               text: "O",
-              textColor: kBackgroundColor,
+              textColor: pressed == Option.O ? kBackgroundColor : kTextColor,
             ),
           ],
         ),
