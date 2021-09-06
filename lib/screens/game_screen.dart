@@ -1,21 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
+import 'package:tic_tac_toe/widgets/select_button.dart';
+import 'package:tic_tac_toe/widgets/player_card.dart';
+import 'package:tic_tac_toe/widgets/player.dart';
+import 'package:tic_tac_toe/widgets/start_button.dart';
 
-class GameScreen extends StatelessWidget {
+Player playerObject = Player();
+
+class GameScreen extends StatefulWidget {
+  final String player1Side;
+  GameScreen({required this.player1Side});
+
+  @override
+  _GameScreenState createState() => _GameScreenState();
+}
+
+class _GameScreenState extends State<GameScreen> {
+  @override
+  void initState() {
+    super.initState();
+    playerObject.getPlayerSides(widget.player1Side);
+  }
+
+  List<SelectButton> getSelectButtons() {
+    List<SelectButton> buttons = [];
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        buttons.add(SelectButton(onTapFunction: () => displaySide(i, j), boxSide: playerObject.matrix[i][j]));
+      }
+    }
+    return buttons;
+  }
+
+  void displaySide(int x, int y) {
+    setState(() {
+      playerObject.updateMatrix(x, y);
+      if (playerObject.checkWinner(x, y)) {
+        Future.delayed(Duration(milliseconds: 100), () => setState(() => playerObject.winner = true));
+      } else if (playerObject.count == 9) {
+        Future.delayed(Duration(milliseconds: 100), () => setState(() => playerObject.draw = true));
+      } else {
+        playerObject.changeProfileCardColor();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF36268C),
+      backgroundColor: kBackgroundColor,
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                PlayerCard(player: 'Player 1', symbol: 'X'),
+                PlayerCard(player: 'Player 1', symbol: playerObject.p1, cardColor: playerObject.cardColorP1),
                 SizedBox(width: 30.0),
-                PlayerCard(player: 'Player 2', symbol: 'O'),
+                PlayerCard(player: 'Player 2', symbol: playerObject.p2, cardColor: playerObject.cardColorP2),
               ],
             ),
             Container(
@@ -24,101 +67,27 @@ class GameScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.width - 30.0,
               ),
               decoration: BoxDecoration(
-                color: Color(0xFF6649C4),
+                color: kContainerColor,
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              child: Wrap(
-                children: [
-                  SelectButton(),
-                  SelectButton(),
-                  SelectButton(),
-                  SelectButton(),
-                  SelectButton(),
-                  SelectButton(),
-                  SelectButton(),
-                  SelectButton(),
-                  SelectButton(),
-                ],
-              ),
+              child: playerObject.winner || playerObject.draw ? Text('winner or draw') : Wrap(children: getSelectButtons()),
             ),
+            playerObject.winner || playerObject.draw
+                ? Align(
+                    alignment: Alignment.bottomCenter,
+                    child: StartButton(
+                        text: 'Restart',
+                        textSize: 30.0,
+                        textPadding: 10.0,
+                        onPressed: () {
+                          playerObject.resetData();
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        }),
+                  )
+                : Text('')
           ],
         ),
-      ),
-    );
-  }
-}
-
-class SelectButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    double containerWidth = MediaQuery.of(context).size.width - 30.0;
-    double boxWidth = containerWidth / 3;
-    print(boxWidth * 0.6);
-    return Padding(
-      padding: EdgeInsets.all(10.0),
-      child: Container(
-        constraints: BoxConstraints.tightFor(
-          width: boxWidth - 20.0,
-          height: boxWidth - 20.0,
-        ),
-        decoration: BoxDecoration(
-          color: Color(0xFF28175C),
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Center(
-          child: Text(
-            'X',
-            style: TextStyle(
-              color: kBackgroundColor,
-              fontSize: boxWidth * 0.6,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'Carter',
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class PlayerCard extends StatelessWidget {
-  final String player;
-  final String symbol;
-
-  const PlayerCard({required this.player, required this.symbol});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Color(0xFF28175C),
-        borderRadius: BorderRadius.circular(10.0),
-        border: Border.all(color: Colors.white),
-      ),
-      constraints: BoxConstraints.tightFor(
-        width: 110.0,
-        height: 125.0,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            player,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 15.0,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          Text(
-            symbol,
-            style: TextStyle(
-              color: kBackgroundColor,
-              fontSize: 30.0,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'Carter',
-            ),
-          ),
-        ],
       ),
     );
   }
