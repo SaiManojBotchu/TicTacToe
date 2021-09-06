@@ -8,9 +8,6 @@ class ContainerWidget extends StatelessWidget {
 
   ContainerWidget({required this.onTapFunction, required this.containerColor, required this.text, required this.textColor});
 
-  static String player1 = '';
-  static String player2 = '';
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
