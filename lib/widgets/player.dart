@@ -58,6 +58,10 @@ class Player {
     }
   }
 
+  String getWinnerText() {
+    return p1 == side ? 'Player 1 Win' : 'Player 2 Win';
+  }
+
   void resetData() {
     matrix = List.generate(3, (i) => List.filled(3, Player.none));
     cardColorP1 = Colors.green;
