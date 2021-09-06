@@ -18,13 +18,15 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
   fonts:
     - family: Paytone
       fonts:
-        - asset: fonts/PaytoneOne-Regular.ttf
+        - asset: assets/fonts/PaytoneOne-Regular.ttf
     - family: Carter
       fonts:
-        - asset: fonts/CarterOne-Regular.ttf
+        - asset: assets/fonts/CarterOne-Regular.ttf
 
 
 
