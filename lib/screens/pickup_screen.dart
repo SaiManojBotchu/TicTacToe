@@ -3,8 +3,7 @@ import 'package:tic_tac_toe/screens/game_screen.dart';
 import 'package:tic_tac_toe/widgets/container_widget.dart';
 import 'package:tic_tac_toe/constants.dart';
 import 'package:tic_tac_toe/widgets/start_button.dart';
-
-enum Option { X, O }
+import 'package:tic_tac_toe/widgets/player.dart';
 
 class PickUpScreen extends StatefulWidget {
   @override
@@ -12,7 +11,7 @@ class PickUpScreen extends StatefulWidget {
 }
 
 class _PickUpScreenState extends State<PickUpScreen> {
-  Option? pressed;
+  String pressed = '';
 
   @override
   Widget build(BuildContext context) {
@@ -39,22 +38,22 @@ class _PickUpScreenState extends State<PickUpScreen> {
             ContainerWidget(
               onTapFunction: () {
                 setState(() {
-                  pressed = Option.X;
+                  pressed = Player.X;
                 });
               },
-              containerColor: pressed == Option.X ? kTextColor : kBackgroundColor,
+              containerColor: pressed == Player.X ? kTextColor : kBackgroundColor,
               text: "X",
-              textColor: pressed == Option.X ? kBackgroundColor : kTextColor,
+              textColor: pressed == Player.X ? kBackgroundColor : kTextColor,
             ),
             ContainerWidget(
               onTapFunction: () {
                 setState(() {
-                  pressed = Option.O;
+                  pressed = Player.O;
                 });
               },
-              containerColor: pressed == Option.O ? kTextColor : kBackgroundColor,
+              containerColor: pressed == Player.O ? kTextColor : kBackgroundColor,
               text: "O",
-              textColor: pressed == Option.O ? kBackgroundColor : kTextColor,
+              textColor: pressed == Player.O ? kBackgroundColor : kTextColor,
             ),
             StartButton(
               text: 'Start',
@@ -63,7 +62,10 @@ class _PickUpScreenState extends State<PickUpScreen> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => GameScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => GameScreen(
+                            player1Side: pressed,
+                          )),
                 );
               },
             )
