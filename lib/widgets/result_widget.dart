@@ -17,7 +17,7 @@ class ResultWidget extends StatelessWidget {
         Container(
           constraints: BoxConstraints.tightFor(
             width: MediaQuery.of(context).size.width - 30.0,
-            height: MediaQuery.of(context).size.width - 30.0,
+            height: MediaQuery.of(context).size.width - 50.0,
           ),
           decoration: BoxDecoration(
             color: kContainerColor,
@@ -37,7 +37,7 @@ class ResultWidget extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 50.0),
+        SizedBox(height: 40.0),
         ReusableButton(
           text: 'Restart',
           textSize: 30.0,
