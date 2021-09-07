@@ -21,7 +21,7 @@ class SelectButton extends StatelessWidget {
             height: boxWidth - 20.0,
           ),
           decoration: BoxDecoration(
-            color: Color(0xFF28175C),
+            color: kContainerCardColor,
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Center(

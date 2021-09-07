@@ -8,9 +8,6 @@ import 'package:tic_tac_toe/widgets/player.dart';
 Player player = Player();
 
 class GameScreen extends StatefulWidget {
-  final String player1Side;
-  GameScreen({required this.player1Side});
-
   @override
   _GameScreenState createState() => _GameScreenState();
 }
@@ -19,7 +16,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
-    player.getPlayerSides(widget.player1Side);
+    player.getPlayerSides();
   }
 
   List<SelectButton> getSelectButtons() {

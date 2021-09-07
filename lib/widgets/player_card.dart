@@ -13,7 +13,7 @@ class PlayerCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: cardColor,
         borderRadius: BorderRadius.circular(10.0),
-        border: Border.all(color: Colors.white),
+        border: cardColor == kActiveCardColor ? Border.all(color: Colors.white) : null,
       ),
       constraints: BoxConstraints.tightFor(
         width: 110.0,
@@ -22,23 +22,8 @@ class PlayerCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            player,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 15.0,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          Text(
-            symbol,
-            style: TextStyle(
-              color: symbol == 'X' ? kXColor : kOColor,
-              fontSize: 30.0,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'Carter',
-            ),
-          ),
+          Text(player, style: kSmallTextStyle.copyWith(fontSize: 15.0)),
+          Text(symbol, style: kSmallTextStyle.copyWith(color: symbol == 'X' ? kXColor : kOColor)),
         ],
       ),
     );

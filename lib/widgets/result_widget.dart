@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tic_tac_toe/constants.dart';
 import 'package:tic_tac_toe/widgets/player.dart';
-import 'package:tic_tac_toe/widgets/start_button.dart';
+import 'package:tic_tac_toe/widgets/reusable_button.dart';
 
 class ResultWidget extends StatelessWidget {
   final Player player;
@@ -38,7 +38,7 @@ class ResultWidget extends StatelessWidget {
           ),
         ),
         SizedBox(height: 50.0),
-        StartButton(
+        ReusableButton(
           text: 'Restart',
           textSize: 30.0,
           textPadding: 10.0,

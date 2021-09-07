@@ -5,8 +5,10 @@ class Player {
   static const String none = '';
   static const String X = 'X';
   static const String O = 'O';
-  Color cardColorP1 = Colors.green;
-  Color cardColorP2 = kBackgroundColor;
+  static String pressed = '';
+
+  Color cardColorP1 = kActiveCardColor;
+  Color cardColorP2 = kContainerCardColor;
   List<List<String>> matrix = List.generate(3, (i) => List.filled(3, ''));
 
   bool winner = false;
@@ -48,8 +50,8 @@ class Player {
     }
   }
 
-  void getPlayerSides(String side) {
-    if (side == X) {
+  void getPlayerSides() {
+    if (pressed == X) {
       p1 = X;
       p2 = O;
     } else {
@@ -64,8 +66,8 @@ class Player {
 
   void resetData() {
     matrix = List.generate(3, (i) => List.filled(3, Player.none));
-    cardColorP1 = Colors.green;
-    cardColorP2 = kBackgroundColor;
+    cardColorP1 = kActiveCardColor;
+    cardColorP2 = kContainerCardColor;
     winner = false;
     draw = false;
     player1 = true;

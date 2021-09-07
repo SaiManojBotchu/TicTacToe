@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/constants.dart';
 
 class ContainerWidget extends StatelessWidget {
   final Color containerColor;
   final String text;
-  final Color textColor;
   final Function() onTapFunction;
 
-  ContainerWidget({required this.onTapFunction, required this.containerColor, required this.text, required this.textColor});
+  ContainerWidget({required this.onTapFunction, required this.containerColor, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +23,7 @@ class ContainerWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 text,
-                style: TextStyle(
-                  fontSize: 180.0,
-                  color: textColor,
-                  fontWeight: FontWeight.w900,
-                  fontFamily: 'Carter',
-                ),
-                textAlign: TextAlign.center,
+                style: kXTextStyle.copyWith(color: text == 'X' ? kXColor : kOColor),
               ),
             ),
           ),
