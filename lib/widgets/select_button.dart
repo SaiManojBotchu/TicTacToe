@@ -4,8 +4,9 @@ import 'package:tic_tac_toe/constants.dart';
 class SelectButton extends StatelessWidget {
   final Function() onTapFunction;
   final String boxSide;
+  final Color cardColor;
 
-  const SelectButton({required this.onTapFunction, required this.boxSide});
+  const SelectButton({required this.onTapFunction, required this.boxSide, required this.cardColor});
   @override
   Widget build(BuildContext context) {
     double containerWidth = MediaQuery.of(context).size.width - 30.0;
@@ -21,14 +22,18 @@ class SelectButton extends StatelessWidget {
             height: boxWidth - 20.0,
           ),
           decoration: BoxDecoration(
-            color: kContainerCardColor,
+            color: cardColor,
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Center(
             child: Text(
               boxSide,
               style: TextStyle(
-                color: boxSide == 'X' ? kXColor : kOColor,
+                color: cardColor == kWinnerCardColor
+                    ? kTextColor
+                    : boxSide == 'X'
+                        ? kXColor
+                        : kOColor,
                 fontSize: boxWidth * 0.6,
                 fontWeight: FontWeight.w600,
                 fontFamily: boxSide == 'X' ? 'Carter' : 'Paytone',

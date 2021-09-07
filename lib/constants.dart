@@ -8,8 +8,9 @@ const kOColor = Color(0xFFFFCA26);
 
 const kContainerColor = Color(0xFF6649C4);
 const kContainerCardColor = Color(0xFF28175C);
+const kWinnerCardColor = Color(0xFF24D174);
 
-const kActiveCardColor = Color(0xff181717);
+const kActiveCardColor = kWinnerCardColor;
 
 const kTitleTextStyle = TextStyle(
   color: kTextColor,

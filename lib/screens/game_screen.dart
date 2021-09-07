@@ -23,7 +23,13 @@ class _GameScreenState extends State<GameScreen> {
     List<SelectButton> buttons = [];
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
-        buttons.add(SelectButton(onTapFunction: () => displaySide(i, j), boxSide: player.matrix[i][j]));
+        buttons.add(
+          SelectButton(
+            onTapFunction: () => displaySide(i, j),
+            boxSide: player.matrix[i][j],
+            cardColor: player.cardColors[i][j],
+          ),
+        );
       }
     }
     return buttons;
@@ -33,7 +39,8 @@ class _GameScreenState extends State<GameScreen> {
     setState(() {
       player.updateMatrix(x, y);
       if (player.checkWinner(x, y)) {
-        Future.delayed(Duration(milliseconds: 100), () => setState(() => player.winner = true));
+        player.updateCardColors();
+        Future.delayed(Duration(milliseconds: 1000), () => setState(() => player.winner = true));
       } else if (player.count == 9) {
         Future.delayed(Duration(milliseconds: 100), () => setState(() => player.draw = true));
       } else {
