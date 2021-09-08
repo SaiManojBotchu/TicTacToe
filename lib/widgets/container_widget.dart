@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 
@@ -11,10 +12,10 @@ class ContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: GestureDetector(
-          onTap: onTapFunction,
+      child: GestureDetector(
+        onTap: onTapFunction,
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
           child: Container(
             decoration: BoxDecoration(
               color: containerColor,
@@ -23,7 +24,7 @@ class ContainerWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 text,
-                style: kXTextStyle.copyWith(color: text == 'X' ? kXColor : kOColor),
+                style: text == 'X' ? kXTextStyle : kOTextStyle,
               ),
             ),
           ),

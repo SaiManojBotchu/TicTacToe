@@ -11,12 +11,12 @@ class WelcomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('TIC TAC TOE', textAlign: TextAlign.center, style: kTitleTextStyle),
+          Text('TIC TAC TOE', textAlign: TextAlign.center, style: kTextStyle),
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(children: [
               TextSpan(text: 'X', style: kXTextStyle),
-              TextSpan(text: 'O', style: kXTextStyle.copyWith(color: kOColor)),
+              TextSpan(text: 'O', style: kOTextStyle),
             ]),
           ),
           ReusableButton(

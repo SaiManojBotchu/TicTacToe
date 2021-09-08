@@ -22,8 +22,15 @@ class PlayerCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(player, style: kSmallTextStyle.copyWith(fontSize: 15.0)),
-          Text(symbol, style: kSmallTextStyle.copyWith(color: symbol == 'X' ? kXColor : kOColor)),
+          Text(player, style: kTextStyle.copyWith(fontSize: 15.0)),
+          Text(
+            symbol,
+            style: kTextStyle.copyWith(
+              color: symbol == 'X' ? kXColor : kOColor,
+              fontFamily: symbol == 'X' ? 'Carter' : 'Paytone',
+              fontSize: 30.0,
+            ),
+          ),
         ],
       ),
     );

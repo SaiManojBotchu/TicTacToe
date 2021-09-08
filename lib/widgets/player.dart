@@ -16,7 +16,7 @@ class Player {
   bool draw = false;
   bool player1 = true;
   int count = 0;
-  late String p1, p2;
+  String p1 = 'X', p2 = 'O';
   var side = '';
   List<int> li = [];
 
@@ -62,20 +62,15 @@ class Player {
 
   void updateMatrix(int x, int y) {
     side = player1 ? p1 : p2;
-    if (matrix[x][y] == '') {
-      matrix[x][y] = side;
-      player1 = !player1;
-      count++;
-    }
+    matrix[x][y] = side;
+    player1 = !player1;
+    count++;
   }
 
   void getPlayerSides() {
     if (pressed == O) {
       p1 = O;
       p2 = X;
-    } else {
-      p1 = X;
-      p2 = O;
     }
   }
 
@@ -91,6 +86,10 @@ class Player {
     draw = false;
     player1 = true;
     count = 0;
+    p1 = 'X';
+    p2 = 'O';
     pressed = '';
+    side = '';
+    li = [];
   }
 }

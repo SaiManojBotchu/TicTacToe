@@ -37,14 +37,16 @@ class _GameScreenState extends State<GameScreen> {
 
   void displaySide(int x, int y) {
     setState(() {
-      player.updateMatrix(x, y);
-      if (player.checkWinner(x, y)) {
-        player.updateCardColors();
-        Future.delayed(Duration(milliseconds: 1000), () => setState(() => player.winner = true));
-      } else if (player.count == 9) {
-        Future.delayed(Duration(milliseconds: 100), () => setState(() => player.draw = true));
-      } else {
-        player.changeProfileCardColor();
+      if (player.matrix[x][y] == '') {
+        player.updateMatrix(x, y);
+        if (player.checkWinner(x, y)) {
+          player.updateCardColors();
+          Future.delayed(Duration(milliseconds: 1000), () => setState(() => player.winner = true));
+        } else if (player.count == 9) {
+          Future.delayed(Duration(milliseconds: 100), () => setState(() => player.draw = true));
+        } else {
+          player.changeProfileCardColor();
+        }
       }
     });
   }

@@ -22,7 +22,7 @@ class _PickUpScreenState extends State<PickUpScreen> {
             Text(
               'Choose a side',
               textAlign: TextAlign.center,
-              style: kSmallTextStyle,
+              style: kTextStyle.copyWith(fontSize: 30.0),
             ),
             ContainerWidget(
               onTapFunction: () => setState(() => Player.pressed = Player.X),
