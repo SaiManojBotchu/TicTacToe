@@ -7,7 +7,10 @@ class ContainerWidget extends StatelessWidget {
   final String text;
   final Function() onTapFunction;
 
-  ContainerWidget({required this.onTapFunction, required this.containerColor, required this.text});
+  ContainerWidget(
+      {required this.onTapFunction,
+      required this.containerColor,
+      required this.text});
 
   @override
   Widget build(BuildContext context) {

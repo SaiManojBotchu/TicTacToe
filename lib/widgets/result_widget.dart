@@ -28,7 +28,9 @@ class ResultWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  player.winner ? 'assets/images/win.png' : 'assets/images/draw.png',
+                  player.winner
+                      ? 'assets/images/win.png'
+                      : 'assets/images/draw.png',
                   width: MediaQuery.of(context).size.width / 2,
                 ),
                 Text(
