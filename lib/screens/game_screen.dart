@@ -40,7 +40,7 @@ class _GameScreenState extends State<GameScreen> {
       if (player.matrix[x][y] == '') {
         player.updateMatrix(x, y);
         if (player.checkWinner(x, y)) {
-          player.updateCardColors();
+          Future.delayed(Duration(milliseconds: 100), () => setState(() => player.updateCardColors()));
           Future.delayed(Duration(milliseconds: 1000), () => setState(() => player.winner = true));
         } else if (player.count == 9) {
           Future.delayed(Duration(milliseconds: 100), () => setState(() => player.draw = true));

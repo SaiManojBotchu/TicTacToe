@@ -1,3 +1,4 @@
+import 'package:anitex/anitex.dart';
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 
@@ -11,7 +12,6 @@ class SelectButton extends StatelessWidget {
   Widget build(BuildContext context) {
     double containerWidth = MediaQuery.of(context).size.width - 30.0;
     double boxWidth = containerWidth / 3;
-    // print(boxWidth * 0.6);
     return GestureDetector(
       onTap: onTapFunction,
       child: Padding(
@@ -26,8 +26,9 @@ class SelectButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Center(
-            child: Text(
+            child: AnimatedText(
               boxSide,
+              duration: Duration(milliseconds: 200),
               style: TextStyle(
                 color: cardColor == kWinnerCardColor
                     ? kTextColor
@@ -35,8 +36,9 @@ class SelectButton extends StatelessWidget {
                         ? kXColor
                         : kOColor,
                 fontSize: boxWidth * 0.6,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.bold,
                 fontFamily: boxSide == 'X' ? 'Carter' : 'Paytone',
+                height: boxSide == 'X' ? 1.4 : 2.0,
               ),
             ),
           ),
