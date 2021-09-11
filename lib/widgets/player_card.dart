@@ -13,7 +13,7 @@ class PlayerCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: cardColor,
         borderRadius: BorderRadius.circular(10.0),
-        border: cardColor == kActiveCardColor ? Border.all(color: Colors.white) : null,
+        border: cardColor == kActiveCardColor || cardColor == kWinnerCardColor ? Border.all(color: Colors.white) : null,
       ),
       constraints: BoxConstraints.tightFor(
         width: 110.0,
