@@ -2,12 +2,12 @@ import 'package:anitex/anitex.dart';
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 
-class SelectButton extends StatelessWidget {
+class GestureDetectorWidget extends StatelessWidget {
   final Function() onTapFunction;
   final String boxSide;
   final Color cardColor;
 
-  const SelectButton({required this.onTapFunction, required this.boxSide, required this.cardColor});
+  const GestureDetectorWidget({required this.onTapFunction, required this.boxSide, required this.cardColor});
   @override
   Widget build(BuildContext context) {
     double containerWidth = MediaQuery.of(context).size.width - 30.0;
