@@ -10,7 +10,7 @@ const kContainerColor = Color(0xFF6649C4);
 const kContainerCardColor = Color(0xFF28175C);
 const kWinnerCardColor = Color(0xFF24D174);
 
-const kActiveCardColor = kWinnerCardColor;
+const kActiveCardColor = Color(0xFF9b70e5);
 
 const kTextStyle = TextStyle(
   color: kTextColor,
