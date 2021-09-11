@@ -12,6 +12,12 @@ class PickUpScreen extends StatefulWidget {
 
 class _PickUpScreenState extends State<PickUpScreen> {
   @override
+  void initState() {
+    Player.pressed = '';
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
