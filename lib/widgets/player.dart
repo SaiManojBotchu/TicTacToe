@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
+
+final assetsAudioPlayer = AssetsAudioPlayer();
 
 class Player {
   static const String none = '';
@@ -7,18 +10,23 @@ class Player {
   static const String O = 'O';
   static String pressed = '';
 
-  Color cardColorP1 = kActiveCardColor;
-  Color cardColorP2 = kContainerCardColor;
-  List<List<String>> matrix = List.generate(3, (i) => List.filled(3, ''));
-  List<List<Color>> cardColors = List.generate(3, (i) => List.filled(3, kContainerCardColor));
+  static Color cardColorP1 = kActiveCardColor;
+  static Color cardColorP2 = kContainerCardColor;
+  static List<List<String>> matrix = List.generate(3, (i) => List.filled(3, ''));
+  static List<List<Color>> cardColors = List.generate(3, (i) => List.filled(3, kContainerCardColor));
 
-  bool winner = false;
-  bool draw = false;
-  bool player1 = true;
-  int count = 0;
-  String p1 = 'X', p2 = 'O';
-  var side = '';
-  List<int> li = [];
+  static String p1 = 'X', p2 = 'O';
+  static int count = 0;
+  static bool player1 = true;
+
+  static bool winner = false;
+  static bool draw = false;
+  static String side = '';
+  static List<int> li = [];
+  static Map<String, String> notesMap = {
+    X: "note1.wav",
+    O: "note2.wav",
+  };
 
   bool checkWinner(int x, int y) {
     var col = 0, row = 0, diag = 0, rdiag = 0;
@@ -43,21 +51,9 @@ class Player {
     return row == n || col == n || diag == n || rdiag == n;
   }
 
-  void updateToEmptyMatrix() {
+  static void updateToEmptyMatrix() {
     matrix = List.generate(3, (i) => List.filled(3, Player.none));
     cardColors = List.generate(3, (i) => List.filled(3, kContainerCardColor));
-  }
-
-  void updateCardColors() {
-    cardColors[li[0]][li[1]] = kWinnerCardColor;
-    cardColors[li[2]][li[3]] = kWinnerCardColor;
-    cardColors[li[4]][li[5]] = kWinnerCardColor;
-  }
-
-  void changeProfileCardColor() {
-    var z = cardColorP1;
-    cardColorP1 = cardColorP2;
-    cardColorP2 = z;
   }
 
   void updateMatrix(int x, int y) {
@@ -67,10 +63,32 @@ class Player {
     count++;
   }
 
+  void updateCardColors() {
+    cardColors[li[0]][li[1]] = kWinnerCardColor;
+    cardColors[li[2]][li[3]] = kWinnerCardColor;
+    cardColors[li[4]][li[5]] = kWinnerCardColor;
+  }
+
+  void changeProfileCardColor() {
+    cardColorP1 = player1 ? kActiveCardColor : kContainerCardColor;
+    cardColorP2 = player1 ? kContainerCardColor : kActiveCardColor;
+  }
+
+  void changeWinnerCardColor() {
+    if (p1 == side) {
+      cardColorP1 = kWinnerCardColor;
+    } else if (p2 == side) {
+      cardColorP2 = kWinnerCardColor;
+    }
+  }
+
   void getPlayerSides() {
     if (pressed == O) {
       p1 = O;
       p2 = X;
+    } else if (pressed == X) {
+      p1 = X;
+      p2 = O;
     }
   }
 
@@ -78,18 +96,40 @@ class Player {
     return p1 == side ? 'Player 1 Win' : 'Player 2 Win';
   }
 
-  void resetData() {
+  static void resetStaticData() {
     updateToEmptyMatrix();
     cardColorP1 = kActiveCardColor;
     cardColorP2 = kContainerCardColor;
+    count = 0;
     winner = false;
     draw = false;
-    player1 = true;
-    count = 0;
-    p1 = 'X';
-    p2 = 'O';
-    pressed = '';
+    p1 = X;
+    p2 = O;
     side = '';
     li = [];
+  }
+
+  void resetData() {
+    resetStaticData();
+    pressed = '';
+    player1 = true;
+  }
+
+  void playSound() {
+    try {
+      assetsAudioPlayer.open(Audio('assets/audios/${notesMap[side]}'));
+    } catch (e) {
+      print('cannot play audio');
+    }
+  }
+
+  void playResultSound() {
+    try {
+      assetsAudioPlayer.open(
+        Audio(winner ? 'assets/audios/winner.wav' : 'assets/audios/draw.mp3'),
+      );
+    } catch (e) {
+      print('cannot play audio');
+    }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 import 'package:tic_tac_toe/widgets/result_widget.dart';
-import 'package:tic_tac_toe/widgets/select_button.dart';
+import 'package:tic_tac_toe/widgets/gesture_detector_widget.dart';
 import 'package:tic_tac_toe/widgets/player_card.dart';
 import 'package:tic_tac_toe/widgets/player.dart';
 
@@ -19,15 +19,15 @@ class _GameScreenState extends State<GameScreen> {
     player.getPlayerSides();
   }
 
-  List<SelectButton> getSelectButtons() {
-    List<SelectButton> buttons = [];
+  List<GestureDetectorWidget> getSelectButtons() {
+    List<GestureDetectorWidget> buttons = [];
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
         buttons.add(
-          SelectButton(
+          GestureDetectorWidget(
             onTapFunction: () => displaySide(i, j),
-            boxSide: player.matrix[i][j],
-            cardColor: player.cardColors[i][j],
+            boxSide: Player.matrix[i][j],
+            cardColor: Player.cardColors[i][j],
           ),
         );
       }
@@ -37,13 +37,27 @@ class _GameScreenState extends State<GameScreen> {
 
   void displaySide(int x, int y) {
     setState(() {
-      if (player.matrix[x][y] == '') {
+      if (Player.matrix[x][y] == '') {
         player.updateMatrix(x, y);
+        player.playSound();
         if (player.checkWinner(x, y)) {
+          player.changeWinnerCardColor();
           Future.delayed(Duration(milliseconds: 100), () => setState(() => player.updateCardColors()));
-          Future.delayed(Duration(milliseconds: 1000), () => setState(() => player.winner = true));
-        } else if (player.count == 9) {
-          Future.delayed(Duration(milliseconds: 100), () => setState(() => player.draw = true));
+          Future.delayed(
+            Duration(milliseconds: 800),
+            () => setState(() {
+              Player.winner = true;
+              player.playResultSound();
+            }),
+          );
+        } else if (Player.count == 9) {
+          Future.delayed(
+            Duration(milliseconds: 800),
+            () => setState(() {
+              Player.draw = true;
+              player.playResultSound();
+            }),
+          );
         } else {
           player.changeProfileCardColor();
         }
@@ -62,12 +76,12 @@ class _GameScreenState extends State<GameScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                PlayerCard(player: 'Player 1', symbol: player.p1, cardColor: player.cardColorP1),
+                PlayerCard(player: 'Player 1', symbol: Player.p1, cardColor: Player.cardColorP1),
                 SizedBox(width: 30.0),
-                PlayerCard(player: 'Player 2', symbol: player.p2, cardColor: player.cardColorP2),
+                PlayerCard(player: 'Player 2', symbol: Player.p2, cardColor: Player.cardColorP2),
               ],
             ),
-            player.winner || player.draw
+            Player.winner || Player.draw
                 ? ResultWidget(player: player)
                 : Container(
                     constraints: BoxConstraints.tightFor(
