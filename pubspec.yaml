@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.3
   delayed_display: ^2.0.0
   anitex: ^2.0.0
+  assets_audio_player: ^3.0.3+6
 
 dev_dependencies:
   flutter_test:
@@ -22,6 +23,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/audios/
   fonts:
     - family: Paytone
       fonts:
