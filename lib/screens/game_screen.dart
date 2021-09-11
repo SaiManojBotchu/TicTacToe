@@ -82,7 +82,14 @@ class _GameScreenState extends State<GameScreen> {
               ],
             ),
             Player.winner || Player.draw
-                ? ResultWidget(player: player)
+                ? ResultWidget(
+                    player: player,
+                    onPressed: () {
+                      setState(() {
+                        Player.resetStaticData();
+                        player.changeProfileCardColor();
+                      });
+                    })
                 : Container(
                     constraints: BoxConstraints.tightFor(
                       width: MediaQuery.of(context).size.width - 30.0,

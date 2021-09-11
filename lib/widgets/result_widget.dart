@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tic_tac_toe/constants.dart';
-import 'package:tic_tac_toe/screens/game_screen.dart';
 import 'package:tic_tac_toe/widgets/player.dart';
 import 'package:tic_tac_toe/widgets/reusable_button.dart';
 import 'package:delayed_display/delayed_display.dart';
 
 class ResultWidget extends StatelessWidget {
   final Player player;
-  ResultWidget({required this.player});
+  final Function() onPressed;
+  ResultWidget({required this.player, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +44,7 @@ class ResultWidget extends StatelessWidget {
             text: 'Play Again',
             textSize: 30.0,
             textPadding: 8.0,
-            onPressed: () {
-              player.resetData();
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => GameScreen()));
-            },
+            onPressed: onPressed,
           ),
           ReusableButton(
             text: 'Home',
