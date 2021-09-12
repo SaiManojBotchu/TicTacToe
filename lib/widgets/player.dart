@@ -20,6 +20,7 @@ class Player {
   static bool player1 = true;
 
   static bool winner = false;
+  static bool finished = false;
   static bool draw = false;
   static String side = '';
   static List<int> li = [];
@@ -107,6 +108,7 @@ class Player {
     p2 = O;
     side = '';
     li = [];
+    finished = false;
   }
 
   void resetData() {

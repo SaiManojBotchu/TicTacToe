@@ -16,7 +16,8 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
-    player.resetData();
+    Player.resetStaticData();
+    Player.player1 = true;
     player.getPlayerSides();
   }
 
@@ -38,10 +39,11 @@ class _GameScreenState extends State<GameScreen> {
 
   void displaySide(int x, int y) {
     setState(() {
-      if (Player.matrix[x][y] == '') {
+      if (Player.matrix[x][y] == '' && !Player.finished) {
         player.updateMatrix(x, y);
         player.playSound();
         if (player.checkWinner(x, y)) {
+          Player.finished = true;
           player.changeWinnerCardColor();
           Future.delayed(Duration(milliseconds: 100), () => setState(() => player.updateCardColors()));
           Future.delayed(
