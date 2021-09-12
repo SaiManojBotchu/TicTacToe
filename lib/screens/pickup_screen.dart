@@ -4,6 +4,7 @@ import 'package:tic_tac_toe/widgets/container_widget.dart';
 import 'package:tic_tac_toe/constants.dart';
 import 'package:tic_tac_toe/widgets/reusable_button.dart';
 import 'package:tic_tac_toe/widgets/player.dart';
+import 'package:tic_tac_toe/widgets/responsive_ui.dart';
 
 class PickUpScreen extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class _PickUpScreenState extends State<PickUpScreen> {
             Text(
               'Choose a side',
               textAlign: TextAlign.center,
-              style: kTextStyle.copyWith(fontSize: 30.0),
+              style: kTextStyle.copyWith(fontSize: ResponsiveUI.getFontSize(context, 30.0)),
             ),
             ContainerWidget(
               onTapFunction: () => setState(() => Player.pressed = Player.X),
@@ -42,8 +43,7 @@ class _PickUpScreenState extends State<PickUpScreen> {
             ),
             ReusableButton(
               text: 'Start',
-              textSize: 30.0,
-              textPadding: 5.0,
+              textSize: ResponsiveUI.getFontSize(context, 30.0),
               onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => GameScreen())),
             )
           ],

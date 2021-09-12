@@ -4,17 +4,17 @@ import 'package:tic_tac_toe/constants.dart';
 class ReusableButton extends StatelessWidget {
   final String text;
   final double textSize;
-  final double textPadding;
+  final textPadding;
   final Function() onPressed;
 
-  ReusableButton({required this.text, required this.textSize, required this.textPadding, required this.onPressed});
+  ReusableButton({required this.text, required this.textSize, this.textPadding, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
       child: MaterialButton(
-        padding: EdgeInsets.all(textPadding),
+        padding: EdgeInsets.all(textPadding ?? 8.0),
         textColor: kTextColor,
         color: kContainerCardColor,
         minWidth: double.infinity,

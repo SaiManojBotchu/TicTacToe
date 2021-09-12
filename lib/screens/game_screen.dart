@@ -4,6 +4,7 @@ import 'package:tic_tac_toe/widgets/result_widget.dart';
 import 'package:tic_tac_toe/widgets/gesture_detector_widget.dart';
 import 'package:tic_tac_toe/widgets/player_card.dart';
 import 'package:tic_tac_toe/widgets/player.dart';
+import 'package:tic_tac_toe/widgets/responsive_ui.dart';
 
 Player player = Player();
 
@@ -95,8 +96,8 @@ class _GameScreenState extends State<GameScreen> {
                     })
                 : Container(
                     constraints: BoxConstraints.tightFor(
-                      width: MediaQuery.of(context).size.width - 30.0,
-                      height: MediaQuery.of(context).size.width - 30.0,
+                      width: ResponsiveUI.getWidth(context, 30.0),
+                      height: ResponsiveUI.getWidth(context, 30.0),
                     ),
                     decoration: BoxDecoration(
                       color: kContainerColor,

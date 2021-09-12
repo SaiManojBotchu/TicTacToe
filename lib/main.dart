@@ -16,9 +16,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/* TODO:
-    2)if possible draw a line after winning
-    3)add sounds for writing x and o and also winning and draw
-    4)if possible make the code work for landscape and portrait mode
- */

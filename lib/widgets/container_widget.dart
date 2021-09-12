@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
+import 'package:tic_tac_toe/widgets/responsive_ui.dart';
 
 class ContainerWidget extends StatelessWidget {
   final Color containerColor;
@@ -24,7 +25,13 @@ class ContainerWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 text,
-                style: text == 'X' ? kXTextStyle : kOTextStyle,
+                style: text == 'X'
+                    ? kXTextStyle.copyWith(
+                        fontSize: ResponsiveUI.getFontSize(context, 170.0),
+                      )
+                    : kOTextStyle.copyWith(
+                        fontSize: ResponsiveUI.getFontSize(context, 170.0),
+                      ),
               ),
             ),
           ),

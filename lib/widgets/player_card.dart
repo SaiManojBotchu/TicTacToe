@@ -7,6 +7,7 @@ class PlayerCard extends StatelessWidget {
   final Color cardColor;
 
   const PlayerCard({required this.player, required this.symbol, required this.cardColor});
+
   @override
   Widget build(BuildContext context) {
     return Container(
