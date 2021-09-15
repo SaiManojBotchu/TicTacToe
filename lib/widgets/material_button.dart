@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 
-class ReusableButton extends StatelessWidget {
+class MaterialButtonWidget extends StatelessWidget {
   final String text;
   final double textSize;
   final textPadding;
   final Function() onPressed;
 
-  ReusableButton({required this.text, required this.textSize, this.textPadding, required this.onPressed});
+  MaterialButtonWidget({required this.text, required this.textSize, this.textPadding, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

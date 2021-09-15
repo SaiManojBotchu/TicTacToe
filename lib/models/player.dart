@@ -24,10 +24,6 @@ class Player {
   static bool draw = false;
   static String side = '';
   static List<int> li = [];
-  static Map<String, String> notesMap = {
-    X: "note1.wav",
-    O: "note2.wav",
-  };
 
   bool checkWinner(int x, int y) {
     var col = 0, row = 0, diag = 0, rdiag = 0;
@@ -115,23 +111,5 @@ class Player {
     resetStaticData();
     pressed = '';
     player1 = true;
-  }
-
-  void playSound() {
-    try {
-      assetsAudioPlayer.open(Audio('assets/audios/${notesMap[side]}'));
-    } catch (e) {
-      print('cannot play audio');
-    }
-  }
-
-  void playResultSound() {
-    try {
-      assetsAudioPlayer.open(
-        Audio(winner ? 'assets/audios/winner.wav' : 'assets/audios/draw.mp3'),
-      );
-    } catch (e) {
-      print('cannot play audio');
-    }
   }
 }

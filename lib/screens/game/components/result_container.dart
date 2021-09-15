@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tic_tac_toe/constants.dart';
-import 'package:tic_tac_toe/widgets/player.dart';
-import 'package:tic_tac_toe/widgets/reusable_button.dart';
+import 'package:tic_tac_toe/models/player.dart';
+import 'package:tic_tac_toe/widgets/material_button.dart';
 import 'package:delayed_display/delayed_display.dart';
-import 'package:tic_tac_toe/widgets/responsive_ui.dart';
+import 'package:tic_tac_toe/models/responsive_ui.dart';
 
-class ResultWidget extends StatelessWidget {
+class MyResultContainer extends StatelessWidget {
   final Player player;
   final Function() onPressed;
-  ResultWidget({required this.player, required this.onPressed});
+  MyResultContainer({required this.player, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +38,12 @@ class ResultWidget extends StatelessWidget {
                 ],
               )),
           SizedBox(height: 20.0),
-          ReusableButton(
+          MaterialButtonWidget(
             text: 'Play Again',
             textSize: ResponsiveUI.getFontSize(context, 28.0),
             onPressed: onPressed,
           ),
-          ReusableButton(
+          MaterialButtonWidget(
             text: 'Home',
             textSize: ResponsiveUI.getFontSize(context, 23.0),
             onPressed: () {

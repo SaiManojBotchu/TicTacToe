@@ -1,14 +1,14 @@
 import 'package:anitex/anitex.dart';
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
-import 'package:tic_tac_toe/widgets/responsive_ui.dart';
+import 'package:tic_tac_toe/models/responsive_ui.dart';
 
-class GestureDetectorWidget extends StatelessWidget {
+class CardGestureDetector extends StatelessWidget {
   final Function() onTapFunction;
   final String boxSide;
   final Color cardColor;
 
-  const GestureDetectorWidget({required this.onTapFunction, required this.boxSide, required this.cardColor});
+  const CardGestureDetector({required this.onTapFunction, required this.boxSide, required this.cardColor});
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(

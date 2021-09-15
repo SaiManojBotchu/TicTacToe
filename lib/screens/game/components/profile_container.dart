@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 
-class PlayerCard extends StatelessWidget {
+class MyProfileContainer extends StatelessWidget {
   final String player;
   final String symbol;
   final Color cardColor;
 
-  const PlayerCard({required this.player, required this.symbol, required this.cardColor});
+  const MyProfileContainer({required this.player, required this.symbol, required this.cardColor});
 
   @override
   Widget build(BuildContext context) {

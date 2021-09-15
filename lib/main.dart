@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tic_tac_toe/screens/welcome_screen.dart';
-import 'constants.dart';
 import 'package:flutter/services.dart';
+import 'package:tic_tac_toe/screens/welcome/welcome_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,10 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: WelcomeScreen(),
-        backgroundColor: kBackgroundColor,
-      ),
+      theme: ThemeData.dark(),
+      home: WelcomeScreen(),
     );
   }
 }

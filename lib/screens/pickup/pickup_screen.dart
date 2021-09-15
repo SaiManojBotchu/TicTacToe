@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tic_tac_toe/screens/game_screen.dart';
-import 'package:tic_tac_toe/widgets/container_widget.dart';
 import 'package:tic_tac_toe/constants.dart';
-import 'package:tic_tac_toe/widgets/reusable_button.dart';
-import 'package:tic_tac_toe/widgets/player.dart';
-import 'package:tic_tac_toe/widgets/responsive_ui.dart';
+import 'package:tic_tac_toe/widgets/material_button.dart';
+import 'package:tic_tac_toe/models/player.dart';
+import 'package:tic_tac_toe/models/responsive_ui.dart';
+import 'package:tic_tac_toe/screens/game/game_screen.dart';
+import 'package:tic_tac_toe/screens/pickup/gesture_detector.dart';
 
 class PickUpScreen extends StatefulWidget {
   @override
@@ -31,17 +31,17 @@ class _PickUpScreenState extends State<PickUpScreen> {
               textAlign: TextAlign.center,
               style: kTextStyle.copyWith(fontSize: ResponsiveUI.getFontSize(context, 30.0)),
             ),
-            ContainerWidget(
+            MyGestureDetector(
               onTapFunction: () => setState(() => Player.pressed = Player.X),
               containerColor: Player.pressed == Player.X ? kContainerCardColor : kBackgroundColor,
               text: "X",
             ),
-            ContainerWidget(
+            MyGestureDetector(
               onTapFunction: () => setState(() => Player.pressed = Player.O),
               containerColor: Player.pressed == Player.O ? kContainerCardColor : kBackgroundColor,
               text: "O",
             ),
-            ReusableButton(
+            MaterialButtonWidget(
               text: 'Start',
               textSize: ResponsiveUI.getFontSize(context, 30.0),
               onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => GameScreen())),
