@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tic_tac_toe/constants.dart';
 import 'package:tic_tac_toe/models/player.dart';
+import 'package:tic_tac_toe/screens/welcome/welcome_screen.dart';
 import 'package:tic_tac_toe/widgets/material_button.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:tic_tac_toe/models/responsive_ui.dart';
@@ -48,8 +49,7 @@ class MyResultContainer extends StatelessWidget {
             textSize: ResponsiveUI.getFontSize(context, 23.0),
             onPressed: () {
               player.resetData();
-              Navigator.pop(context);
-              Navigator.pop(context);
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => WelcomeScreen()), (route) => false);
             },
           ),
         ],
