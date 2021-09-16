@@ -1,6 +1,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 
 final assetsAudioPlayer = AssetsAudioPlayer();
+final assetsAudioPlayer1 = AssetsAudioPlayer();
 
 class AudioPlayer {
   static Map<String, String> notesMap = {
@@ -8,7 +9,7 @@ class AudioPlayer {
     'O': 'assets/audios/note2.wav',
   };
 
-  void playSound(String side) {
+  static void playSound(String side) {
     try {
       assetsAudioPlayer.open(Audio('${notesMap[side]}'));
     } catch (e) {
@@ -16,7 +17,7 @@ class AudioPlayer {
     }
   }
 
-  void playResultSound(bool winner) {
+  static void playResultSound(bool winner) {
     try {
       assetsAudioPlayer.open(
         Audio(winner ? 'assets/audios/winner.wav' : 'assets/audios/draw.mp3'),
@@ -24,5 +25,19 @@ class AudioPlayer {
     } catch (e) {
       print('cannot play audio');
     }
+  }
+
+  static void playMusic() {
+    try {
+      assetsAudioPlayer1.open(
+        Audio('assets/audios/Monkeys-Spinning-Monkeys.mp3'),
+      );
+    } catch (e) {
+      print('cannot play audio');
+    }
+  }
+
+  static void stopMusic() {
+    assetsAudioPlayer1.stop();
   }
 }
