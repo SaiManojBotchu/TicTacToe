@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
+import 'package:tic_tac_toe/models/settings.dart';
 import 'package:tic_tac_toe/screens/game/components/result_container.dart';
 import 'package:tic_tac_toe/screens/game/components/card_gesture_detector.dart';
 import 'package:tic_tac_toe/screens/game/components/profile_container.dart';
@@ -8,8 +9,6 @@ import 'package:tic_tac_toe/models/responsive_ui.dart';
 import 'package:tic_tac_toe/utilities/audio_player.dart';
 
 Player player = Player();
-
-AudioPlayer audioPlayer = AudioPlayer();
 
 class GameScreen extends StatefulWidget {
   @override
@@ -36,9 +35,9 @@ class _GameScreenState extends State<GameScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                MyProfileContainer(player: 'Player 1', symbol: Player.p1, cardColor: Player.cardColorP1),
+                MyProfileContainer(playerIndex: 0, symbol: Player.p1, cardColor: Player.cardColorP1),
                 SizedBox(width: 30.0),
-                MyProfileContainer(player: 'Player 2', symbol: Player.p2, cardColor: Player.cardColorP2),
+                MyProfileContainer(playerIndex: 1, symbol: Player.p2, cardColor: Player.cardColorP2),
               ],
             ),
             Player.winner || Player.draw ? _buildResultWidget() : _buildGameContainer(context),
@@ -94,7 +93,7 @@ class _GameScreenState extends State<GameScreen> {
     setState(() {
       if (Player.matrix[x][y] == '' && !Player.finished) {
         player.updateMatrix(x, y);
-        audioPlayer.playSound(Player.side);
+        if (Settings.audioValues[0]) AudioPlayer.playSound(Player.side);
         if (player.checkWinner(x, y)) {
           Player.finished = true;
           player.changeWinnerCardColor();
@@ -103,7 +102,7 @@ class _GameScreenState extends State<GameScreen> {
             Duration(milliseconds: 800),
             () => setState(() {
               Player.winner = true;
-              audioPlayer.playResultSound(Player.winner);
+              if (Settings.audioValues[0]) AudioPlayer.playResultSound(Player.winner);
             }),
           );
         } else if (Player.count == 9) {
@@ -111,7 +110,7 @@ class _GameScreenState extends State<GameScreen> {
             Duration(milliseconds: 800),
             () => setState(() {
               Player.draw = true;
-              audioPlayer.playResultSound(Player.draw);
+              if (Settings.audioValues[0]) AudioPlayer.playResultSound(Player.winner);
             }),
           );
         } else {

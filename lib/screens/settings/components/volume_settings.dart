@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
+import 'package:tic_tac_toe/models/settings.dart';
 
 class VolumeSettings extends StatefulWidget {
   @override
@@ -8,8 +9,6 @@ class VolumeSettings extends StatefulWidget {
 }
 
 class _VolumeSettingsState extends State<VolumeSettings> {
-  List<bool> values = [true, true];
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -30,8 +29,8 @@ class _VolumeSettingsState extends State<VolumeSettings> {
     return CupertinoSwitch(
       activeColor: kBackgroundColor,
       trackColor: kContainerColor,
-      value: values[index],
-      onChanged: (v) => setState(() => values[index] = v),
+      value: Settings.audioValues[index],
+      onChanged: (v) => setState(() => Settings.audioValues[index] = v),
     );
   }
 }

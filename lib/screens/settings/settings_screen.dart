@@ -1,17 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tic_tac_toe/screens/settings/components/avatar_settings.dart';
+import 'package:tic_tac_toe/constants.dart';
+import 'package:tic_tac_toe/screens/settings/components/toggle_buttons.dart';
 import 'package:tic_tac_toe/screens/settings/components/volume_settings.dart';
 import 'package:tic_tac_toe/screens/settings/components/player_settings.dart';
 
 class SettingsScreen extends StatelessWidget {
-  final TextEditingController textEditingControllerP1 = TextEditingController();
-  final TextEditingController textEditingControllerP2 = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    textEditingControllerP1.text = 'Player 1';
-    textEditingControllerP2.text = 'Player 2';
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(horizontal: 15.0),
@@ -20,19 +16,31 @@ class SettingsScreen extends StatelessWidget {
           _buildDivider(),
           VolumeSettings(),
           _buildDivider(),
-          PlayerSettings(playerName: 'Your Name', textEditingController: textEditingControllerP1),
-          SizedBox(height: 10.0),
-          AvatarSettings(),
+          PlayerSettings(playerIndex: 0),
+          _buildSizedBox(),
+          _buildAvatarText(0),
           _buildDivider(),
-          PlayerSettings(playerName: 'Opponent', textEditingController: textEditingControllerP2),
-          SizedBox(height: 10.0),
-          AvatarSettings(),
+          PlayerSettings(playerIndex: 1),
+          _buildSizedBox(),
+          _buildAvatarText(1),
         ],
       ),
     );
   }
 
-  Widget _buildDivider() {
-    return Divider(thickness: 3.0, height: 30.0);
+  SizedBox _buildSizedBox() => SizedBox(height: 10.0);
+
+  Widget _buildDivider() => Divider(thickness: 3.0, height: 30.0);
+
+  Row _buildAvatarText(int index) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _buildSizedBox(),
+        Text('Avatar', style: TextStyle(color: kTextColor, fontSize: 20.0)),
+        SizedBox(width: 10.0),
+        MyToggleButtons(index),
+      ],
+    );
   }
 }

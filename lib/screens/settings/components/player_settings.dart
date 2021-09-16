@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
+import 'package:tic_tac_toe/models/settings.dart';
 
-class PlayerSettings extends StatelessWidget {
-  final TextEditingController textEditingController;
-  final String playerName;
+class PlayerSettings extends StatefulWidget {
+  final int playerIndex;
+  PlayerSettings({required this.playerIndex});
 
-  PlayerSettings({required this.playerName, required this.textEditingController});
+  @override
+  _PlayerSettingsState createState() => _PlayerSettingsState();
+}
+
+class _PlayerSettingsState extends State<PlayerSettings> {
+  @override
+  void initState() {
+    super.initState();
+    Settings.getTextFieldValues();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    Settings.updatePlayerNames();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +29,7 @@ class PlayerSettings extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          playerName,
+          Settings.playerRoleNames[widget.playerIndex],
           style: kTextStyle.copyWith(fontSize: 20.0, fontWeight: null, fontFamily: 'Coiny'),
         ),
         SizedBox(width: 10.0),
@@ -26,7 +42,7 @@ class PlayerSettings extends StatelessWidget {
     return TextField(
       cursorColor: kXColor,
       maxLength: 10,
-      controller: textEditingController,
+      controller: Settings.textControllers[widget.playerIndex],
       decoration: InputDecoration(
         filled: true,
         fillColor: kContainerColor,

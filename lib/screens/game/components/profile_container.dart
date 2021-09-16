@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
+import 'package:tic_tac_toe/models/settings.dart';
 
 class MyProfileContainer extends StatelessWidget {
-  final String player;
   final String symbol;
   final Color cardColor;
+  final int playerIndex;
 
-  const MyProfileContainer({required this.player, required this.symbol, required this.cardColor});
+  const MyProfileContainer({required this.playerIndex, required this.symbol, required this.cardColor});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +19,19 @@ class MyProfileContainer extends StatelessWidget {
       ),
       constraints: BoxConstraints.tightFor(
         width: 110.0,
-        height: 125.0,
+        height: 135.0,
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(player, style: kTextStyle.copyWith(fontSize: 15.0)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(Settings.playerNames[playerIndex], style: kTextStyle.copyWith(fontSize: 15.0)),
+          ),
+          Image.asset(
+            'assets/images/avatar-${Settings.playerAvatars[playerIndex]}.png',
+            width: 45.0,
+          ),
           Text(
             symbol,
             style: kTextStyle.copyWith(
