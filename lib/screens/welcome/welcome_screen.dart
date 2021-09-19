@@ -13,8 +13,13 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   void _musicHandler() {
-    if (Settings.audioValues[1]) AudioPlayer.playMusic();
-    if (!Settings.audioValues[1]) AudioPlayer.stopMusic();
+    if (Settings.audioValues[1]) {
+      AudioPlayer.playMusic();
+    }
+    if (!Settings.audioValues[1]) {
+      AudioPlayer.toggleLoop();
+      AudioPlayer.stopMusic();
+    }
   }
 
   @override

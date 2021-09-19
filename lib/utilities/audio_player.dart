@@ -27,17 +27,26 @@ class AudioPlayer {
     }
   }
 
-  static void playMusic() {
+  static void playMusic() async {
     try {
-      assetsAudioPlayer1.open(
-        Audio('assets/audios/Monkeys-Spinning-Monkeys.mp3'),
+      await assetsAudioPlayer1.open(
+        Audio('assets/audios/music.mp3'),
       );
+      await assetsAudioPlayer1.setLoopMode(LoopMode.single);
     } catch (e) {
-      print('cannot play audio');
+      print('assetsAudioPlayer1 error: $e');
     }
   }
 
   static void stopMusic() {
     assetsAudioPlayer1.stop();
+  }
+
+  static void pauseMusic() {
+    assetsAudioPlayer1.pause();
+  }
+
+  static void toggleLoop() {
+    assetsAudioPlayer1.toggleLoop();
   }
 }
