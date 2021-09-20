@@ -6,27 +6,13 @@ import 'package:tic_tac_toe/screens/welcome/components/scaffold_body.dart';
 import 'package:tic_tac_toe/utilities/audio_player.dart';
 import 'package:tic_tac_toe/models/settings.dart';
 
-class WelcomeScreen extends StatefulWidget {
-  @override
-  _WelcomeScreenState createState() => _WelcomeScreenState();
-}
-
-class _WelcomeScreenState extends State<WelcomeScreen> {
-  void _musicHandler() {
-    if (Settings.audioValues[1]) {
-      AudioPlayer.playMusic();
-    }
-    if (!Settings.audioValues[1]) {
-      AudioPlayer.toggleLoop();
-      AudioPlayer.stopMusic();
-    }
-  }
-
+class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    _musicHandler();
+    if (Settings.audioValues[1]) AudioPlayer.playMusic();
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      resizeToAvoidBottomInset: false,
       appBar: _buildAppBar(context),
       body: MyScaffoldBody(),
     );
@@ -48,7 +34,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         color: kTextColor,
         iconSize: ResponsiveUI.getFontSize(context, 35.0),
         padding: EdgeInsets.zero,
-        onPressed: () => MyAlertDialog.buildAlert(context).then((value) => setState(() {})),
+        onPressed: () => MyAlertDialog.buildAlert(context),
         icon: Icon(Icons.menu),
       ),
     );

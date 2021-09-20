@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 import 'package:tic_tac_toe/models/settings.dart';
+import 'package:tic_tac_toe/utilities/audio_player.dart';
 
 class VolumeSettings extends StatefulWidget {
   @override
@@ -30,7 +31,19 @@ class _VolumeSettingsState extends State<VolumeSettings> {
       activeColor: kBackgroundColor,
       trackColor: kContainerColor,
       value: Settings.audioValues[index],
-      onChanged: (v) => setState(() => Settings.audioValues[index] = v),
+      onChanged: (v) => setState(() {
+        Settings.audioValues[index] = v;
+        if (index == 1) _musicHandler();
+      }),
     );
+  }
+
+  void _musicHandler() {
+    if (Settings.audioValues[1]) {
+      AudioPlayer.playMusic();
+    } else if (!Settings.audioValues[1]) {
+      AudioPlayer.toggleLoop();
+      AudioPlayer.stopMusic();
+    }
   }
 }
