@@ -11,7 +11,7 @@ class MyAlertDialog {
       fontFamily: 'Coiny',
       fontWeight: FontWeight.bold,
     ),
-    alertPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
+    alertPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
     alertBorder: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     ),
