@@ -21,13 +21,11 @@ class WelcomeScreen extends StatelessWidget {
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: kBackgroundColor,
-      title: Center(
-        child: Text(
-          'TIC TAC TOE',
-          textAlign: TextAlign.center,
-          style: kTextStyle.copyWith(
-            fontSize: ResponsiveUI.getFontSize(context, 33.0),
-          ),
+      title: Text(
+        'TIC TAC TOE',
+        textAlign: TextAlign.center,
+        style: kTextStyle.copyWith(
+          fontSize: ResponsiveUI.getFontSize(context, 33.0),
         ),
       ),
       leading: IconButton(
