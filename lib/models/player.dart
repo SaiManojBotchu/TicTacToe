@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:tic_tac_toe/models/settings.dart';
 
 final assetsAudioPlayer = AssetsAudioPlayer();
 
@@ -90,7 +91,7 @@ class Player {
   }
 
   String getWinnerText() {
-    return p1 == side ? 'Player 1 Win' : 'Player 2 Win';
+    return p1 == side ? '${Settings.playerNames[0]} Wins' : '${Settings.playerNames[1]} Wins';
   }
 
   static void resetStaticData() {
