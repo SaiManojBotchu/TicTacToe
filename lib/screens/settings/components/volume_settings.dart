@@ -17,19 +17,20 @@ class _VolumeSettingsState extends State<VolumeSettings> {
       children: [
         Text('Sound'),
         SizedBox(width: 10.0),
-        _buildCupertinoSwitch(0),
+        _buildSwitchButtons(0),
         SizedBox(width: 20.0),
         Text('Music'),
         SizedBox(width: 10.0),
-        _buildCupertinoSwitch(1),
+        _buildSwitchButtons(1),
       ],
     );
   }
 
-  CupertinoSwitch _buildCupertinoSwitch(int index) {
-    return CupertinoSwitch(
+  _buildSwitchButtons(int index) {
+    return Switch.adaptive(
       activeColor: kBackgroundColor,
-      trackColor: kContainerColor,
+      inactiveTrackColor: kContainerColor,
+      inactiveThumbColor: kTextColor,
       value: Settings.audioValues[index],
       onChanged: (v) => setState(() {
         Settings.audioValues[index] = v;
