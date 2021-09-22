@@ -33,7 +33,7 @@ class MyResultContainer extends StatelessWidget {
                 children: [
                   Image.asset(Player.winner ? 'assets/images/win.png' : 'assets/images/draw.png', height: containerHeight * 0.63),
                   Text(
-                    Player.winner ? player.getWinnerText() : 'Draw',
+                    Player.getResultText(),
                     style: kTextStyle.copyWith(fontSize: ResponsiveUI.getFontSize(context, 40.0)),
                   )
                 ],
@@ -49,6 +49,7 @@ class MyResultContainer extends StatelessWidget {
             textSize: ResponsiveUI.getFontSize(context, 23.0),
             onPressed: () {
               player.resetData();
+              Player.resetData1();
               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => WelcomeScreen()), (route) => false);
             },
           ),

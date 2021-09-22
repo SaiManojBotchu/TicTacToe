@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 import 'package:tic_tac_toe/models/settings.dart';
+import 'package:tic_tac_toe/screens/game/components/alert_result.dart';
 import 'package:tic_tac_toe/screens/game/components/result_container.dart';
 import 'package:tic_tac_toe/screens/game/components/card_gesture_detector.dart';
 import 'package:tic_tac_toe/screens/game/components/profile_container.dart';
 import 'package:tic_tac_toe/models/player.dart';
 import 'package:tic_tac_toe/models/responsive_ui.dart';
 import 'package:tic_tac_toe/utilities/audio_player.dart';
+import 'package:tic_tac_toe/screens/game/components/score_container.dart';
 
 Player player = Player();
 
@@ -20,7 +22,7 @@ class _GameScreenState extends State<GameScreen> {
   void initState() {
     super.initState();
     Player.resetStaticData();
-    Player.player1 = true;
+    Player.resetData1();
     player.getPlayerSides();
   }
 
@@ -34,39 +36,50 @@ class _GameScreenState extends State<GameScreen> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 MyProfileContainer(playerIndex: 0, symbol: Player.p1, cardColor: Player.cardColorP1),
-                SizedBox(width: 30.0),
+                SizedBox(width: 10.0),
+                Column(
+                  children: [
+                    Text('D', style: kTextStyle.copyWith(fontSize: 30.0, color: Colors.blue)),
+                    MyScoreContainer('${Player.drawScore}'),
+                  ],
+                ),
+                SizedBox(width: 10.0),
                 MyProfileContainer(playerIndex: 1, symbol: Player.p2, cardColor: Player.cardColorP2),
               ],
             ),
-            Player.winner || Player.draw ? _buildResultWidget() : _buildGameContainer(context),
+            Player.completed ? _buildResultContainer() : Expanded(child: _buildGameContainer(context)),
           ],
         ),
       ),
     );
   }
 
-  Container _buildGameContainer(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints.tightFor(
-        width: ResponsiveUI.getWidth(context, 30.0),
-        height: ResponsiveUI.getWidth(context, 30.0),
+  Widget _buildGameContainer(BuildContext context) {
+    return Center(
+      child: Container(
+        constraints: BoxConstraints.tightFor(
+          width: ResponsiveUI.getWidth(context, 30.0),
+          height: ResponsiveUI.getWidth(context, 30.0),
+        ),
+        decoration: BoxDecoration(
+          color: kContainerColor,
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Wrap(children: _buildCardButtons()),
       ),
-      decoration: BoxDecoration(
-        color: kContainerColor,
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      child: Wrap(children: _buildCardButtons()),
     );
   }
 
-  MyResultContainer _buildResultWidget() {
+  MyResultContainer _buildResultContainer() {
     return MyResultContainer(
       player: player,
       onPressed: () {
         setState(() {
           Player.resetStaticData();
+          Player.resetData1();
           player.changeProfileCardColor();
         });
       },
@@ -95,28 +108,48 @@ class _GameScreenState extends State<GameScreen> {
         player.updateMatrix(x, y);
         if (Settings.audioValues[0]) AudioPlayer.playSound(Player.side);
         if (player.checkWinner(x, y)) {
-          Player.finished = true;
-          player.changeWinnerCardColor();
-          Future.delayed(Duration(milliseconds: 100), () => setState(() => player.updateCardColors()));
-          Future.delayed(
-            Duration(milliseconds: 800),
-            () => setState(() {
-              Player.winner = true;
-              if (Settings.audioValues[0]) AudioPlayer.playResultSound(Player.winner);
-            }),
-          );
+          winnerLogic();
         } else if (Player.count == 9) {
-          Future.delayed(
-            Duration(milliseconds: 800),
-            () => setState(() {
-              Player.draw = true;
-              if (Settings.audioValues[0]) AudioPlayer.playResultSound(Player.winner);
-            }),
-          );
+          drawLogic();
         } else {
           player.changeProfileCardColor();
         }
       }
+    });
+  }
+
+  void winnerLogic() {
+    Player.finished = true;
+    player.changeWinnerCardColor();
+    Future.delayed(Duration(milliseconds: 100), () => setState(() => player.updateCardColors()));
+    Future.delayed(
+      Duration(milliseconds: 800),
+      () => setState(() {
+        Player.winner = true;
+        Player.updateScores();
+        if (!Player.completed) MyAlert.showAlert(context, '${Player.getAlertTitle()}', '😎', nextRoundFunc);
+        if (Settings.audioValues[0]) AudioPlayer.playResultSound(Player.winnerPlayer);
+      }),
+    );
+  }
+
+  void drawLogic() {
+    Future.delayed(
+      Duration(milliseconds: 800),
+      () => setState(() {
+        Player.draw = true;
+        Player.updateScores();
+        if (!Player.completed) MyAlert.showAlert(context, '${Player.getAlertTitle()}', '😔', nextRoundFunc);
+        if (Settings.audioValues[0]) AudioPlayer.playResultSound(Player.winnerPlayer);
+      }),
+    );
+  }
+
+  void nextRoundFunc() {
+    setState(() {
+      Player.resetStaticData();
+      player.changeProfileCardColor();
+      Navigator.pop(context);
     });
   }
 }

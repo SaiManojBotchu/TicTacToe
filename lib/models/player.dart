@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:tic_tac_toe/models/settings.dart';
-
-final assetsAudioPlayer = AssetsAudioPlayer();
 
 class Player {
   static const String none = '';
@@ -25,6 +22,36 @@ class Player {
   static bool draw = false;
   static String side = '';
   static List<int> li = [];
+
+  static List<int> playerScores = [0, 0];
+  static int drawScore = 0;
+  static String winnerPlayer = '';
+  static bool completed = false;
+
+  static void updateScores() {
+    if (winner) {
+      if (p1 == side)
+        playerScores[0]++;
+      else
+        playerScores[1]++;
+    } else if (draw) {
+      drawScore++;
+    }
+    isCompleted();
+  }
+
+  static void isCompleted() {
+    if (playerScores[0] == Settings.scores[0]) {
+      completed = true;
+      winnerPlayer = 'p1';
+    } else if (playerScores[1] == Settings.scores[0]) {
+      winnerPlayer = 'p2';
+      completed = true;
+    } else if (drawScore == Settings.scores[1]) {
+      winnerPlayer = 'draw';
+      completed = true;
+    }
+  }
 
   bool checkWinner(int x, int y) {
     var col = 0, row = 0, diag = 0, rdiag = 0;
@@ -90,8 +117,14 @@ class Player {
     }
   }
 
-  String getWinnerText() {
-    return p1 == side ? '${Settings.playerNames[0]} Wins' : '${Settings.playerNames[1]} Wins';
+  static String getAlertTitle() {
+    if (winner) return p1 == side ? '${Settings.playerNames[0]} Wins!' : '${Settings.playerNames[1]} Wins!';
+    return 'Its a tie!';
+  }
+
+  static String getResultText() {
+    if (winner) return p1 == side ? '${Settings.playerNames[0]} Won' : '${Settings.playerNames[1]} Won';
+    return 'Draw!';
   }
 
   static void resetStaticData() {
@@ -106,6 +139,14 @@ class Player {
     side = '';
     li = [];
     finished = false;
+  }
+
+  static void resetData1() {
+    playerScores = [0, 0];
+    drawScore = 0;
+    winnerPlayer = '';
+    completed = false;
+    Player.player1 = true;
   }
 
   void resetData() {

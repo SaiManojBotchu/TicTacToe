@@ -17,11 +17,17 @@ class AudioPlayer {
     }
   }
 
-  static void playResultSound(bool winner) {
+  static void playResultSound(String winnerPlayer) {
     try {
-      assetsAudioPlayer.open(
-        Audio(winner ? 'assets/audios/winner.wav' : 'assets/audios/draw.mp3'),
-      );
+      if (winnerPlayer == 'p1' || winnerPlayer == 'p2') {
+        assetsAudioPlayer.open(
+          Audio('assets/audios/winner.wav'),
+        );
+      } else if (winnerPlayer == 'draw') {
+        assetsAudioPlayer.open(
+          Audio('assets/audios/draw.mp3'),
+        );
+      }
     } catch (e) {
       print('cannot play audio');
     }
