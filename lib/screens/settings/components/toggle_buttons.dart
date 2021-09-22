@@ -4,7 +4,6 @@ import 'package:tic_tac_toe/models/settings.dart';
 
 class MyToggleButtons extends StatefulWidget {
   final int index;
-
   MyToggleButtons(this.index);
 
   @override
@@ -46,9 +45,9 @@ class _MyToggleButtonsState extends State<MyToggleButtons> {
 
   CircleAvatar _buildCircleAvatar(int index) {
     return CircleAvatar(
-      radius: 25.0,
+      radius: 22.0,
       backgroundColor: isSelected[index] ? kBackgroundColor : kActiveCardColor,
-      child: Image.asset('assets/images/avatar-$index.png', width: 40.0),
+      child: Image.asset('assets/images/avatar-$index.png', width: 36.0),
     );
   }
 }

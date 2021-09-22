@@ -30,10 +30,10 @@ class _PlayerSettingsState extends State<PlayerSettings> {
       children: [
         Text(
           Settings.playerRoleNames[widget.playerIndex],
-          style: kTextStyle.copyWith(fontSize: 20.0, fontWeight: null, fontFamily: 'Coiny'),
+          style: TextStyle(fontSize: 19.0),
         ),
         SizedBox(width: 10.0),
-        SizedBox(width: 180.0, child: _buildTextField()),
+        SizedBox(width: 150.0, height: 39.0, child: _buildTextField()),
       ],
     );
   }

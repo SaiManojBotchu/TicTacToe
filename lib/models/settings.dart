@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Settings {
   static List<bool> audioValues = [true, true];
@@ -7,6 +7,9 @@ class Settings {
   static List playerAvatars = [0, 0];
   static List<bool> p1AvatarList = [true, false, false, false];
   static List<bool> p2AvatarList = [true, false, false, false];
+
+  static List<int> scores = [3, 5];
+  static List<String> scoreTitles = ['Win Score ', 'Draw Score'];
 
   static final TextEditingController controllerP1 = TextEditingController();
   static final TextEditingController controllerP2 = TextEditingController();

@@ -7,10 +7,10 @@ class MyAlertDialog {
   static AlertStyle alertStyle = AlertStyle(
     backgroundColor: kActiveCardColor,
     titleStyle: TextStyle(
-      fontSize: 30.0,
-      fontFamily: 'Coiny',
-      fontWeight: FontWeight.bold,
+      fontSize: 25.0,
+      fontFamily: 'Paytone',
     ),
+    buttonAreaPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
     alertPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
     alertBorder: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),

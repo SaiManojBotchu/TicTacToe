@@ -15,27 +15,30 @@ class _VolumeSettingsState extends State<VolumeSettings> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Sound'),
-        SizedBox(width: 10.0),
+        Text('Sound', style: TextStyle(fontSize: 19.0)),
+        SizedBox(width: 5.0),
         _buildSwitchButtons(0),
-        SizedBox(width: 20.0),
-        Text('Music'),
         SizedBox(width: 10.0),
+        Text('Music', style: TextStyle(fontSize: 19.0)),
+        SizedBox(width: 5.0),
         _buildSwitchButtons(1),
       ],
     );
   }
 
   _buildSwitchButtons(int index) {
-    return Switch.adaptive(
-      activeColor: kBackgroundColor,
-      inactiveTrackColor: kContainerColor,
-      inactiveThumbColor: kTextColor,
-      value: Settings.audioValues[index],
-      onChanged: (v) => setState(() {
-        Settings.audioValues[index] = v;
-        if (index == 1) _musicHandler();
-      }),
+    return Transform.scale(
+      scale: 0.85,
+      child: Switch.adaptive(
+        activeColor: kBackgroundColor,
+        inactiveTrackColor: kContainerColor,
+        inactiveThumbColor: kTextColor,
+        value: Settings.audioValues[index],
+        onChanged: (v) => setState(() {
+          Settings.audioValues[index] = v;
+          if (index == 1) _musicHandler();
+        }),
+      ),
     );
   }
 
