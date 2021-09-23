@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tic_tac_toe/screens/welcome/welcome_screen.dart';
 import 'package:tic_tac_toe/models/audio_resume.dart';
+import 'package:tic_tac_toe/utilities/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: WelcomeScreen(),
+      home: SplashScreen(),
     );
   }
 }
