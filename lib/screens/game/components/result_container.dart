@@ -14,7 +14,7 @@ class MyResultContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double containerHeight = ResponsiveUI.getHeight(context, 0.44);
+    double containerHeight = ResponsiveUI.getHeight(0.44);
     return DelayedDisplay(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -34,19 +34,19 @@ class MyResultContainer extends StatelessWidget {
                   Image.asset(Player.winner ? 'assets/images/win.png' : 'assets/images/draw.png', height: containerHeight * 0.63),
                   Text(
                     Player.getResultText(),
-                    style: kTextStyle.copyWith(fontSize: ResponsiveUI.getFontSize(context, 40.0)),
+                    style: kTextStyle.copyWith(fontSize: ResponsiveUI.getFontSize(40.0)),
                   )
                 ],
               )),
           SizedBox(height: 20.0),
           MaterialButtonWidget(
             text: 'Play Again',
-            textSize: ResponsiveUI.getFontSize(context, 28.0),
+            textSize: ResponsiveUI.getFontSize(28.0),
             onPressed: onPressed,
           ),
           MaterialButtonWidget(
             text: 'Home',
-            textSize: ResponsiveUI.getFontSize(context, 23.0),
+            textSize: ResponsiveUI.getFontSize(23.0),
             onPressed: () {
               player.resetData();
               Player.resetData1();

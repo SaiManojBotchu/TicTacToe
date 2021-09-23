@@ -29,7 +29,7 @@ class _PickUpScreenState extends State<PickUpScreen> {
             Text(
               'Choose a side',
               textAlign: TextAlign.center,
-              style: kTextStyle.copyWith(fontSize: ResponsiveUI.getFontSize(context, 30.0)),
+              style: kTextStyle.copyWith(fontSize: ResponsiveUI.getFontSize(30.0)),
             ),
             MyGestureDetector(
               onTapFunction: () => setState(() => Player.pressed = Player.X),
@@ -43,7 +43,7 @@ class _PickUpScreenState extends State<PickUpScreen> {
             ),
             MaterialButtonWidget(
               text: 'Start',
-              textSize: ResponsiveUI.getFontSize(context, 30.0),
+              textSize: ResponsiveUI.getFontSize(30.0),
               onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => GameScreen())),
             )
           ],

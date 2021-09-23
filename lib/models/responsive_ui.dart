@@ -1,17 +1,28 @@
 import 'package:flutter/cupertino.dart';
 
 class ResponsiveUI {
-  static double getFontSize(BuildContext context, double fontSize) {
-    // 800 is avg height of a device
-    return (fontSize / 820) * MediaQuery.of(context).size.height;
+  static double deviceHeight = 0.0;
+  static double deviceWidth = 0.0;
+
+  static getDeviceHeight(BuildContext context) {
+    deviceHeight = MediaQuery.of(context).size.height;
+  }
+
+  static getDeviceWidth(BuildContext context) {
+    deviceWidth = MediaQuery.of(context).size.width;
+  }
+
+  static double getFontSize(double fontSize) {
+    // 820 is avg height of a device
+    return (fontSize / 820) * deviceHeight;
   }
 
   static double getWidth(BuildContext context, double padding) {
-    return MediaQuery.of(context).size.width - padding;
+    return deviceWidth - padding;
   }
 
-  static double getHeight(BuildContext context, double percent) {
-    return (percent) * MediaQuery.of(context).size.height;
+  static double getHeight(double percent) {
+    return (percent) * deviceHeight;
   }
 
   static double getBoxWidth(double width, double padding) {

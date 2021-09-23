@@ -13,7 +13,7 @@ class MyScaffoldBody extends StatelessWidget {
           Expanded(child: _buildRichText(context)),
           MaterialButtonWidget(
             text: 'Pick a side',
-            textSize: ResponsiveUI.getFontSize(context, 35.0),
+            textSize: ResponsiveUI.getFontSize(35.0),
             textPadding: 12.0,
             onPressed: () => Navigator.push(
               context,
@@ -43,7 +43,7 @@ class MyScaffoldBody extends StatelessWidget {
     return TextSpan(
       text: letter,
       style: textStyle.copyWith(
-        fontSize: ResponsiveUI.getFontSize(context, 200.0),
+        fontSize: ResponsiveUI.getFontSize(200.0),
       ),
     );
   }

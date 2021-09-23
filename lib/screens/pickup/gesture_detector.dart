@@ -34,9 +34,9 @@ class MyGestureDetector extends StatelessWidget {
       child: Text(
         text,
         style: text == 'X'
-            ? kXTextStyle.copyWith(fontSize: ResponsiveUI.getFontSize(context, 170.0))
+            ? kXTextStyle.copyWith(fontSize: ResponsiveUI.getFontSize(170.0))
             : kOTextStyle.copyWith(
-                fontSize: ResponsiveUI.getFontSize(context, 170.0),
+                fontSize: ResponsiveUI.getFontSize(170.0),
               ),
       ),
     );

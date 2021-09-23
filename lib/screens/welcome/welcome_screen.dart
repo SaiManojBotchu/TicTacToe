@@ -9,6 +9,8 @@ import 'package:tic_tac_toe/models/settings.dart';
 class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ResponsiveUI.getDeviceHeight(context);
+    ResponsiveUI.getDeviceWidth(context);
     if (Settings.audioValues[1]) AudioPlayer.playMusic();
     return Scaffold(
       backgroundColor: kBackgroundColor,
@@ -25,12 +27,12 @@ class WelcomeScreen extends StatelessWidget {
         'TIC TAC TOE',
         textAlign: TextAlign.center,
         style: kTextStyle.copyWith(
-          fontSize: ResponsiveUI.getFontSize(context, 33.0),
+          fontSize: ResponsiveUI.getFontSize(33.0),
         ),
       ),
       leading: IconButton(
         color: kTextColor,
-        iconSize: ResponsiveUI.getFontSize(context, 35.0),
+        iconSize: ResponsiveUI.getFontSize(35.0),
         padding: EdgeInsets.zero,
         onPressed: () => MyAlertDialog.buildAlert(context),
         icon: Icon(Icons.menu),
