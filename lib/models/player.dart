@@ -94,7 +94,7 @@ class Player {
     cardColors[li[4]][li[5]] = kWinnerCardColor;
   }
 
-  void changeProfileCardColor() {
+  static void changeProfileCardColor() {
     cardColorP1 = player1 ? kActiveCardColor : kContainerCardColor;
     cardColorP2 = player1 ? kContainerCardColor : kActiveCardColor;
   }

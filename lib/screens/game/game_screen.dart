@@ -1,14 +1,16 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants.dart';
 import 'package:tic_tac_toe/models/settings.dart';
 import 'package:tic_tac_toe/screens/game/components/alert_result.dart';
+import 'package:tic_tac_toe/screens/game/components/profile_container.dart';
 import 'package:tic_tac_toe/screens/game/components/result_container.dart';
 import 'package:tic_tac_toe/screens/game/components/card_gesture_detector.dart';
-import 'package:tic_tac_toe/screens/game/components/profile_container.dart';
 import 'package:tic_tac_toe/models/player.dart';
 import 'package:tic_tac_toe/models/responsive_ui.dart';
-import 'package:tic_tac_toe/utilities/audio_player.dart';
+import 'package:tic_tac_toe/screens/game/components/timer.dart';
 import 'package:tic_tac_toe/screens/game/components/score_container.dart';
+import 'package:tic_tac_toe/utilities/audio_player.dart';
 
 Player player = Player();
 
@@ -24,6 +26,33 @@ class _GameScreenState extends State<GameScreen> {
     Player.resetStaticData();
     Player.resetData1();
     player.getPlayerSides();
+    startTimer();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer!.cancel();
+  }
+
+  static const maxSeconds = 15;
+  int seconds = maxSeconds;
+  late Timer? timer;
+
+  void resetTimer() => setState(() => seconds = maxSeconds);
+
+  void stopTimer() => setState(() => timer!.cancel());
+
+  void startTimer() {
+    timer = Timer.periodic(Duration(seconds: 1), (_) {
+      if (seconds > 0 && seconds < 16)
+        setState(() => seconds--);
+      else if (seconds == 0) {
+        Player.player1 = !Player.player1;
+        Player.changeProfileCardColor();
+        resetTimer();
+      }
+    });
   }
 
   @override
@@ -34,6 +63,7 @@ class _GameScreenState extends State<GameScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            Visibility(visible: !Player.completed, child: MyCountDownTimer(seconds: seconds, maxSeconds: maxSeconds)),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -78,9 +108,11 @@ class _GameScreenState extends State<GameScreen> {
       player: player,
       onPressed: () {
         setState(() {
+          resetTimer();
+          startTimer();
           Player.resetStaticData();
           Player.resetData1();
-          player.changeProfileCardColor();
+          Player.changeProfileCardColor();
         });
       },
     );
@@ -112,13 +144,15 @@ class _GameScreenState extends State<GameScreen> {
         } else if (Player.count == 9) {
           drawLogic();
         } else {
-          player.changeProfileCardColor();
+          Player.changeProfileCardColor();
+          resetTimer();
         }
       }
     });
   }
 
   void winnerLogic() {
+    stopTimer();
     Player.finished = true;
     player.changeWinnerCardColor();
     Future.delayed(Duration(milliseconds: 100), () => setState(() => player.updateCardColors()));
@@ -134,6 +168,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void drawLogic() {
+    stopTimer();
     Future.delayed(
       Duration(milliseconds: 800),
       () => setState(() {
@@ -148,7 +183,9 @@ class _GameScreenState extends State<GameScreen> {
   void nextRoundFunc() {
     setState(() {
       Player.resetStaticData();
-      player.changeProfileCardColor();
+      Player.changeProfileCardColor();
+      resetTimer();
+      startTimer();
       Navigator.pop(context);
     });
   }
