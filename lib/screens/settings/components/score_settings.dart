@@ -20,7 +20,7 @@ class _ScoreSettingsState extends State<ScoreSettings> {
         MyMaterialButton(
           index: widget.index,
           icon: Icons.remove,
-          onPressed: Settings.scores[widget.index] > 0 ? decrementFunc : null,
+          onPressed: Settings.scores[widget.index] > 1 ? decrementFunc : null,
         ),
         Text('${Settings.scores[widget.index]}'),
         MyMaterialButton(
