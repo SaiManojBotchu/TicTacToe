@@ -8,11 +8,11 @@ Don't forget to give a star if you like this project 😅😊
 
 > **Note**: This repository is still under development and I will continue to add more features to it! 🙃
 
-## Table of contents 📜
+## Table of Contents 📜
 
 - [General Info](#general-info-)
-- [Screenshots](#screenshots-)
 - [Preview](#preview-)
+- [Screenshots](#screenshots-)
 - [Getting Started](#getting-started-)
 - [Technologies](#technologies-)
 - [Dependencies](#dependencies-)
@@ -22,23 +22,28 @@ Don't forget to give a star if you like this project 😅😊
 
 The purpose of this project was to practice Flutter development by creating simple mobile game.
 
+## Preview 🎥
+<img src="preview-1.gif" width="300"/> <img src="preview-2.gif" width="300"/>
+
+## Screenshots 📷
+
 ## Getting Started 🚀
 
-#### 1. [Setup Flutter](https://flutter.io/setup/)
+**1. [ Setup Flutter](https://flutter.io/setup/)**
 
-#### 2. Clone the repo
+**2. Clone the repo**
 
 ```sh
 $ git clone https://github.com/SaiManojBotchu/TicTacToe.git
 $ cd TicTacToe/
 ```
 
-#### 3. Install dependencies
+**3. Install dependencies**
 ```sh
 $ flutter pub get
 ```
 
-#### 3. Run app
+**4. Run app**
 ```sh
 $ flutter run
 ```
