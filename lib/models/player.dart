@@ -139,12 +139,17 @@ class Player {
     finished = false;
   }
 
+  static void updatePlayer1() {
+    int score = drawScore + playerScores[0] + playerScores[1];
+    player1 = score / 2 == 0 ? true : false;
+  }
+
   static void resetData1() {
     playerScores = [0, 0];
     drawScore = 0;
     winnerPlayer = '';
     completed = false;
-    Player.player1 = true;
+    player1 = true;
   }
 
   void resetData() {

@@ -93,6 +93,7 @@ class _GameScreenState extends State<GameScreen> {
                         onPressed: () {
                           resetTimer();
                           Player.resetStaticData();
+                          Player.updatePlayer1();
                         },
                       ),
                     ],
