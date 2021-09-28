@@ -11,6 +11,7 @@ import 'package:tic_tac_toe/models/responsive_ui.dart';
 import 'package:tic_tac_toe/screens/game/components/timer.dart';
 import 'package:tic_tac_toe/screens/game/components/score_container.dart';
 import 'package:tic_tac_toe/utilities/audio_player.dart';
+import 'package:tic_tac_toe/screens/game/components/text_button.dart';
 
 Player player = Player();
 
@@ -37,11 +38,16 @@ class _GameScreenState extends State<GameScreen> {
 
   static const maxSeconds = 15;
   int seconds = maxSeconds;
+  int pauseSeconds = 0;
   late Timer? timer;
 
   void resetTimer() => setState(() => seconds = maxSeconds);
 
   void stopTimer() => setState(() => timer!.cancel());
+
+  void pauseTimer() => setState(() => pauseSeconds = seconds);
+
+  void resumeTimer() => setState(() => seconds = pauseSeconds);
 
   void startTimer() {
     timer = Timer.periodic(Duration(seconds: 1), (_) {
@@ -63,7 +69,35 @@ class _GameScreenState extends State<GameScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Visibility(visible: !Player.completed, child: MyCountDownTimer(seconds: seconds, maxSeconds: maxSeconds)),
+            Visibility(
+                visible: !Player.completed,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 30.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MyTextButton(
+                        text: 'pause',
+                        onPressed: () {
+                          pauseTimer();
+                          stopTimer();
+                          MyAlert.showAlert(context, 'Game Paused!', '⏸', 'Resume', () {
+                            Navigator.pop(context);
+                            resumeTimer();
+                            startTimer();
+                          });
+                        },
+                      ),
+                      MyTextButton(
+                        text: 'new',
+                        onPressed: () {
+                          resetTimer();
+                          Player.resetStaticData();
+                        },
+                      ),
+                    ],
+                  ),
+                )),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -72,6 +106,11 @@ class _GameScreenState extends State<GameScreen> {
                 const SizedBox(width: 10.0),
                 Column(
                   children: [
+                    Visibility(
+                      visible: !Player.completed,
+                      child: MyCountDownTimer(seconds: seconds, maxSeconds: maxSeconds),
+                    ),
+                    const SizedBox(height: 50.0),
                     Text('D', style: kTextStyle.copyWith(fontSize: 30.0, color: Colors.blue)),
                     MyScoreContainer('${Player.drawScore}'),
                   ],
@@ -161,7 +200,7 @@ class _GameScreenState extends State<GameScreen> {
       () => setState(() {
         Player.winner = true;
         Player.updateScores();
-        if (!Player.completed) MyAlert.showAlert(context, '${Player.getAlertTitle()}', '😎', nextRoundFunc);
+        if (!Player.completed) MyAlert.showAlert(context, '${Player.getAlertTitle()}', '😎', 'Next Round', nextRoundFunc);
         if (Settings.audioValues[0]) AudioPlayer.playResultSound(Player.winnerPlayer);
       }),
     );
@@ -174,7 +213,7 @@ class _GameScreenState extends State<GameScreen> {
       () => setState(() {
         Player.draw = true;
         Player.updateScores();
-        if (!Player.completed) MyAlert.showAlert(context, '${Player.getAlertTitle()}', '😔', nextRoundFunc);
+        if (!Player.completed) MyAlert.showAlert(context, '${Player.getAlertTitle()}', '😔', 'Next Round', nextRoundFunc);
         if (Settings.audioValues[0]) AudioPlayer.playResultSound(Player.winnerPlayer);
       }),
     );
