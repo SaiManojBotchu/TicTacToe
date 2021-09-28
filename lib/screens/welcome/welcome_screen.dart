@@ -6,12 +6,22 @@ import 'package:tic_tac_toe/screens/welcome/components/scaffold_body.dart';
 import 'package:tic_tac_toe/utilities/audio_player.dart';
 import 'package:tic_tac_toe/models/settings.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    if (Settings.audioValues[1]) AudioPlayer.playMusic();
+  }
+
   @override
   Widget build(BuildContext context) {
     ResponsiveUI.getDeviceHeight(context);
     ResponsiveUI.getDeviceWidth(context);
-    if (Settings.audioValues[1]) AudioPlayer.playMusic();
     return Scaffold(
       backgroundColor: kBackgroundColor,
       resizeToAvoidBottomInset: false,
