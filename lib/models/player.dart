@@ -134,8 +134,6 @@ class Player {
     count = 0;
     winner = false;
     draw = false;
-    p1 = X;
-    p2 = O;
     side = '';
     li = [];
     finished = false;
