@@ -42,6 +42,7 @@ class _PlayerSettingsState extends State<PlayerSettings> {
     return TextField(
       cursorColor: kXColor,
       maxLength: 10,
+      textCapitalization: TextCapitalization.words,
       controller: Settings.textControllers[widget.playerIndex],
       decoration: InputDecoration(
         filled: true,
