@@ -9,7 +9,7 @@ class MyCountDownTimer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 15.0),
+      padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 15.0),
       child: Align(
         alignment: Alignment.topRight,
         child: SizedBox(
@@ -20,7 +20,7 @@ class MyCountDownTimer extends StatelessWidget {
             children: [
               CircularProgressIndicator(
                 value: 1 - seconds / maxSeconds,
-                valueColor: AlwaysStoppedAnimation(Colors.white),
+                valueColor: const AlwaysStoppedAnimation(Colors.white),
                 backgroundColor: Colors.greenAccent,
               ),
               Center(child: Text('$seconds')),

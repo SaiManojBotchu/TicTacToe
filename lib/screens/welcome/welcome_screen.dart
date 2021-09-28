@@ -33,9 +33,9 @@ class WelcomeScreen extends StatelessWidget {
       leading: IconButton(
         color: kTextColor,
         iconSize: ResponsiveUI.getFontSize(35.0),
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.all(0.0),
         onPressed: () => MyAlertDialog.buildAlert(context),
-        icon: Icon(Icons.menu),
+        icon: const Icon(Icons.menu),
       ),
     );
   }

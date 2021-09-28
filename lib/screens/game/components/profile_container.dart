@@ -21,7 +21,7 @@ class MyProfileContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
             border: cardColor == kActiveCardColor || cardColor == kWinnerCardColor ? Border.all(color: Colors.white) : null,
           ),
-          constraints: BoxConstraints.tightFor(
+          constraints: const BoxConstraints.tightFor(
             width: 110.0,
             height: 135.0,
           ),

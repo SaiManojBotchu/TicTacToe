@@ -16,7 +16,7 @@ class CardGestureDetector extends StatelessWidget {
         return GestureDetector(
           onTap: onTapFunction,
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Container(
               constraints: BoxConstraints.tightFor(
                 width: ResponsiveUI.getBoxWidth(constraints.maxWidth, 10.0),
@@ -29,7 +29,7 @@ class CardGestureDetector extends StatelessWidget {
               child: Center(
                 child: AnimatedText(
                   boxSide,
-                  duration: Duration(milliseconds: 200),
+                  duration: const Duration(milliseconds: 200),
                   style: TextStyle(
                     color: cardColor == kWinnerCardColor
                         ? kTextColor

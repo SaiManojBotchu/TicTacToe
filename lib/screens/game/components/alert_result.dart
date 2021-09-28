@@ -19,16 +19,16 @@ class MyAlert {
   static Future showAlert(BuildContext context, String msg, String emoji, Function() nextRoundFunc) {
     return Alert(
         context: context,
-        padding: EdgeInsets.all(0.0),
+        padding: const EdgeInsets.all(0.0),
         onWillPopActive: true,
         title: msg,
         style: alertStyle,
-        closeIcon: Icon(Icons.close),
+        closeIcon: const Icon(Icons.close),
         closeFunction: nextRoundFunc,
         content: Text(emoji, style: TextStyle(fontSize: 50.0)),
         buttons: [
           DialogButton(
-            child: Text('Next Round'),
+            child: const Text('Next Round'),
             onPressed: nextRoundFunc,
             color: kBackgroundColor,
           ),

@@ -15,12 +15,12 @@ class _VolumeSettingsState extends State<VolumeSettings> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Sound', style: TextStyle(fontSize: 19.0)),
-        SizedBox(width: 5.0),
+        const Text('Sound', style: TextStyle(fontSize: 19.0)),
+        const SizedBox(width: 5.0),
         _buildSwitchButtons(0),
-        SizedBox(width: 10.0),
-        Text('Music', style: TextStyle(fontSize: 19.0)),
-        SizedBox(width: 5.0),
+        const SizedBox(width: 10.0),
+        const Text('Music', style: TextStyle(fontSize: 19.0)),
+        const SizedBox(width: 5.0),
         _buildSwitchButtons(1),
       ],
     );

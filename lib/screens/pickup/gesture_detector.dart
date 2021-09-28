@@ -8,7 +8,7 @@ class MyGestureDetector extends StatelessWidget {
   final String text;
   final Function() onTapFunction;
 
-  MyGestureDetector({required this.onTapFunction, required this.containerColor, required this.text});
+  const MyGestureDetector({required this.onTapFunction, required this.containerColor, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class MyGestureDetector extends StatelessWidget {
       child: GestureDetector(
         onTap: onTapFunction,
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Container(
             decoration: BoxDecoration(
               color: containerColor,

@@ -69,14 +69,14 @@ class _GameScreenState extends State<GameScreen> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 MyProfileContainer(playerIndex: 0, symbol: Player.p1, cardColor: Player.cardColorP1),
-                SizedBox(width: 10.0),
+                const SizedBox(width: 10.0),
                 Column(
                   children: [
                     Text('D', style: kTextStyle.copyWith(fontSize: 30.0, color: Colors.blue)),
                     MyScoreContainer('${Player.drawScore}'),
                   ],
                 ),
-                SizedBox(width: 10.0),
+                const SizedBox(width: 10.0),
                 MyProfileContainer(playerIndex: 1, symbol: Player.p2, cardColor: Player.cardColorP2),
               ],
             ),

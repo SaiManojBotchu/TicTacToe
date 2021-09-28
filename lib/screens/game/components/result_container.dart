@@ -10,7 +10,7 @@ import 'package:tic_tac_toe/models/responsive_ui.dart';
 class MyResultContainer extends StatelessWidget {
   final Player player;
   final Function() onPressed;
-  MyResultContainer({required this.player, required this.onPressed});
+  const MyResultContainer({required this.player, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class MyResultContainer extends StatelessWidget {
                   )
                 ],
               )),
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
           MaterialButtonWidget(
             text: 'Play Again',
             textSize: ResponsiveUI.getFontSize(28.0),

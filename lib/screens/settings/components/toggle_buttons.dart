@@ -4,7 +4,7 @@ import 'package:tic_tac_toe/models/settings.dart';
 
 class MyToggleButtons extends StatefulWidget {
   final int index;
-  MyToggleButtons(this.index);
+  const MyToggleButtons(this.index);
 
   @override
   _MyToggleButtonsState createState() => _MyToggleButtonsState();

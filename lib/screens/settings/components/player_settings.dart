@@ -4,7 +4,7 @@ import 'package:tic_tac_toe/models/settings.dart';
 
 class PlayerSettings extends StatefulWidget {
   final int playerIndex;
-  PlayerSettings({required this.playerIndex});
+  const PlayerSettings({required this.playerIndex});
 
   @override
   _PlayerSettingsState createState() => _PlayerSettingsState();
@@ -30,9 +30,9 @@ class _PlayerSettingsState extends State<PlayerSettings> {
       children: [
         Text(
           Settings.playerRoleNames[widget.playerIndex],
-          style: TextStyle(fontSize: 19.0),
+          style: const TextStyle(fontSize: 19.0),
         ),
-        SizedBox(width: 10.0),
+        const SizedBox(width: 10.0),
         SizedBox(width: 150.0, height: 39.0, child: _buildTextField()),
       ],
     );
@@ -48,7 +48,7 @@ class _PlayerSettingsState extends State<PlayerSettings> {
         fillColor: kContainerColor,
         focusColor: Colors.red,
         counterText: '',
-        contentPadding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+        contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white), borderRadius: BorderRadius.circular(5.0)),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(width: 0.0),
