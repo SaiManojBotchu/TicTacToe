@@ -48,6 +48,19 @@ $ flutter pub get
 $ flutter run
 ```
 
+## Features ➕
+
+Currently the project has the following features:
+
+1. Background music.
+2. Game sounds.
+3. User can change the name of players.
+4. User can select his avatar.
+5. Selecting win score and draw score.
+6. Timer when playing game.
+7. Minimal Animations.
+
+
 ## Technologies 👨🏻‍💻
 
 [![Flutter](https://img.shields.io/badge/Flutter-v2.2.3-1.svg)](https://flutter.dev/)   
