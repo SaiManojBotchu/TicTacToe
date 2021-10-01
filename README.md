@@ -17,6 +17,7 @@ Don't forget to give a star if you like this project 😅😊
 5. [Features](#features-)
 6. [Technologies](#technologies-)
 7. [Dependencies](#dependencies-)
+8. [Contact Me](#contact-me-)
 
 
 ## General Info 📝
@@ -24,9 +25,14 @@ Don't forget to give a star if you like this project 😅😊
 The purpose of this project was to practice Flutter development by creating simple mobile game.
 
 ## Preview 🎥
-<img src="preview-1.gif" width="250"/> &nbsp;&nbsp;&nbsp;&nbsp; <img src="preview-2.gif" width="250"/>
+<img src="readme/preview-1.gif" width="250"/> &nbsp;&nbsp;&nbsp;&nbsp; <img src="readme/preview-2.gif" width="250"/>
 
 ## Screenshots 📷
+<img src="readme/1.png" width="250"/> &nbsp;&nbsp;&nbsp;&nbsp; <img src="readme/2.png" width="250"/> &nbsp;&nbsp;&nbsp;&nbsp;  <img src="readme/3.png" width="250"/>
+<img src="readme/4.png" width="250"/>  &nbsp;&nbsp;&nbsp;&nbsp; <img src="readme/5.png" width="250"/>  &nbsp;&nbsp;&nbsp;&nbsp; <img src="readme/6.png" width="250"/>
+<img src="readme/7.png" width="250"/>  &nbsp;&nbsp;&nbsp;&nbsp;  <img src="readme/8.png" width="250"/>  &nbsp;&nbsp;&nbsp;&nbsp; <img src="readme/9.png" width="250"/>
+<img src="readme/10.png" width="250"/>  &nbsp;&nbsp;&nbsp;&nbsp;  <img src="readme/11.png" width="250"/>
+
 
 ## Getting Started 🚀
 
@@ -48,7 +54,6 @@ $ flutter pub get
 ```sh
 $ flutter run
 ```
-
 
 ## Features ➕
 
