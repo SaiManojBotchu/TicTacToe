@@ -59,14 +59,15 @@ $ flutter run
 
 **Current Features:**
 
-1. Splash Screen.
-2. Background music.
-3. Game sounds.
-4. User can change the name of players.
-5. User can select his avatar.
-6. Selecting win score and draw score.
-7. Timer when playing game.
-8. Minimal Animations.
+1. Responsive UI.
+2. Splash Screen.
+3. Background music.
+4. Game sounds.
+5. User can change the name of players.
+6. User can select his avatar.
+7. Selecting win score and draw score.
+8. Timer when playing game.
+9. Minimal Animations.
 
 **Upcoming Features:**
 
